@@ -11,8 +11,8 @@ private:
 
     int stun = 0;
     int weak = 0;   //   attack/2 for number of turns
-    int hP;
-	int mP;
+    int HP;
+	int MP;
 	int totalHP;
 	int totalMP; 
 

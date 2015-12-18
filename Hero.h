@@ -1,12 +1,18 @@
-#include Life.h
+#include "Life.h"
+#include "Bag.h"
 
 class Hero:public Life
 {
 private:
-	int Ownership;	// distinct value stored in World class, indicating Ownership
-	
+	int ownership;	// distinct value stored in World class, indicating Ownership
+	int coin;
+	int level;
+	int experience;
+	Bag bag;
 public:
-    bool checkOwnership(item& item);
+    bool CheckOwnership(item& item);
+    bool CheckLevelUp();
+    void UpdateLevel();   // might call CheckLevelUp()
 
 
 }
