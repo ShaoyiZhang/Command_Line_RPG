@@ -5,11 +5,14 @@ using namespace std;
 
 int main()
 {
-	Life pony = Life(0,1,2,3,4,5,6,7,8,9,10);
-	Hero Saber = Hero(0,1,2,3,4,5,6,7,8,9,10);
+	//Life::Life(string name, int attack, int defense, int stamina, int intelligence,
+	       //int stun, int weak, int HP, int MP, int totalHP, int totalMP, vector<Skill> skills)
+	vector<int>temp;
+	Life pony = Life("person",1,2,3,4,5,6,7,8,9,10,temp);
+	Hero Saber = Hero("Hero", 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, temp);
 
 
 	cout << "pony attack = " << pony.GetAtt();
 
-	cout << "Saber HP = " << Saber.GetHP(); 
+	//cout << "Saber HP = " << Saber.GetHP(); 
 }
