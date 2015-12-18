@@ -1,0 +1,14 @@
+Hero: Aces
+Level: 1
+EXP: 5
+Attack: 10
+Defense: 20
+Stamina: 25
+Intelligence: 5
+HP: 100
+TotalHP: 100
+MP: 30
+TotalMP: 30
+Coins: 30
+Skills: 1 5 7
+Bag: <5,7> <8,2> <12,4>
