@@ -20,7 +20,8 @@ private:
   
 public:
     void ReportStatus();
-    bool checkOwnership()
+
+    
     /*
 	void getName();
   	void getAtt();
