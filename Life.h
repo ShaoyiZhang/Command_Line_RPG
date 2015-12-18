@@ -11,17 +11,17 @@ private:
 
     int stun = 0;
     int weak = 0;   //   attack/2 for number of turns
-    int HP;
-	int MP;
-	int TotalHP;
-	int TotalMP; 
+    int hP;
+	int mP;
+	int totalHP;
+	int totalMP; 
 
     vector<Skill> skills;
   
 public:
     void ReportStatus();
 
-    
+
     /*
 	void getName();
   	void getAtt();
