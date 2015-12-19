@@ -25,6 +25,19 @@ string GetNextWord(string &contents, int &index) {
 	return temp;
 }
 
+void Encrypt(string & string) {
+	for (char& c : string) {
+		c = (c + 10);
+	}
+}
+
+void Decrypt(string & string) {
+	for (char& c : string) {
+		c = (c - 10);
+	}
+}
+
+
 void Load() {
 	std::ifstream myfile("SAVE_DATA.txt");
 	string input = "";
@@ -41,6 +54,8 @@ void Load() {
 		return;
 
 	int size = input.size(), i =0;
+
+	Decrypt(input);
 
 	string name = "", tp = "";
 	int Level = 0, EXP = 0, Attack = 0, Defense = 0, Stamina = 0, Intelligence = 0, HP = 0;
@@ -122,19 +137,28 @@ void Load() {
 }
 
 void Save(Hero h) {
+	std::ofstream myfile("SAVE_DATA.txt");
 	string temp = "";
 	temp += ("Hero: " + h.GetName()+"\n");
 	temp += ("Level: " + to_string(h.GetLevel()) + "\n");
-	temp += ("Hero: " + h.GetName() + "\n");
-	temp += ("Hero: " + h.GetName() + "\n");
-	temp += ("Hero: " + h.GetName() + "\n");
-	temp += ("Hero: " + h.GetName() + "\n");
-	temp += ("Hero: " + h.GetName() + "\n");
-	temp += ("Hero: " + h.GetName() + "\n");
-	temp += ("Hero: " + h.GetName() + "\n");
-	temp += ("Hero: " + h.GetName() + "\n");
-	temp += ("Hero: " + h.GetName() + "\n");
-	temp += ("Hero: " + h.GetName() + "\n");
+	temp += ("EXP: " + to_string(h.GetEXP()) + "\n");
+	temp += ("Attack: " + to_string(h.GetAtt()) + "\n");
+	temp += ("Defense: " + to_string(h.GetDef()) + "\n");
+	temp += ("Stamina: " + to_string(h.GetStam()) + "\n");
+	temp += ("Intelligence: " + to_string(h.GetIntl()) + "\n");
+	temp += ("HP: " + to_string(h.GetHP()) + "\n");
+	temp += ("TotalHP: " + to_string(h.GetTotalHP()) + "\n");
+	temp += ("MP: " + to_string(h.GetMP()) + "\n");
+	temp += ("TotalMP: " + to_string(h.GetTotalMP()) + "\n");
+	temp += ("Coins: " + to_string(h.GetCoins()) + "\n");
+
+	//should use to_string method here
+	temp += "Skills: \n";
+	temp += "Bag: \n";
+	Encrypt(temp);
+	myfile << temp;
+	myfile.close();
+
 }
 
 
@@ -144,12 +168,21 @@ int main() {
 
 	vector<int>temp;
 	Life pony = Life("person", 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, temp);
-	Hero Saber = Hero("Hero", 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, temp);
+	Hero Saber = Hero("Saber", 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, temp);
 
 
 	cout << "pony attack = " << pony.GetAtt()<<endl;
 
-	cout << "Saber HP = " << Saber.GetHP()<<endl;
+	cout << "Saber HP = " << Saber.GetName()<<endl;
+
+	Save(Saber);
+
+	string unen = "it is a unencrypt string\n";
+	cout << unen;
+	Encrypt(unen);
+	cout << unen << endl;
+	Decrypt(unen);
+	cout << unen << endl;
 
 	Load();
 }
