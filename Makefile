@@ -14,3 +14,6 @@ test00: test00.o Life.o Hero.o Item.o Bag.o NPC.o
 
 tests:${BINARIES}
 	./test00
+
+clean:
+	/bin/rm -f ${BINARIES} *.o
