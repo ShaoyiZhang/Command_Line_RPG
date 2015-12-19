@@ -28,6 +28,9 @@ public:
 	int GetCoins() { return coins; }
 	int GetEXP() { return experience; }
 	Bag GetBag() { return bag; }
+	void GainItem(Item i) { bag.PutInBag(i); }
+	void GainCoins(int i) { coins += i; }
+	void GainEXP(int i) { experience += i; UpdateLevel(); };
 
     //bool WearEquip(Equipment equ);
     //bool TakeOffEquip(Equipment equ);
