@@ -63,12 +63,19 @@ bool Hero::PurchaseItem(Item item)
 {
 	return false;
 }
-
+bool Hero::PurchaseItem(string itemName, int howMany)
+{
+	return false;
+}
 bool Hero::SellItem(string itemName)
 {
 	return false;
 }
 bool Hero::SellItem(Item item)
+{
+	return false;
+}
+bool Hero::SellItem(string itemName, int howMany)
 {
 	return false;
 }

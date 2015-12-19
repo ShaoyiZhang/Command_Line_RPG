@@ -24,12 +24,15 @@ public:
     void UpdateLevel();   // might call CheckLevelUp()
     bool PurchaseItem(string itemName);
     bool PurchaseItem(Item item);
+    bool PurchaseItem(string itemName, int howMany);
     bool SellItem(string itemName);
     bool SellItem(Item item);
+    bool SellItem(string itemName, int howMany);
 	int GetLevel() { return level; }
 	int GetCoins() { return coins; }
 	int GetEXP() { return experience; }
-	Bag GetBag() { return bag; }
+	string GetBag() { return bag.toString(); }
+
 	void GainItem(Item i) { bag.PutInBag(i); }
 	void GainCoins(int i) { coins += i; }
 	void GainEXP(int i) { experience += i; UpdateLevel(); };
