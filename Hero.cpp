@@ -18,9 +18,10 @@ Hero::Hero(string name):Life()
 	vector<int> arrayOfPoints;
 
 	srand(time(NULL));
-
 	arrayOfPoints.push_back(int(rand() % 100));
+	srand(time(NULL));
 	arrayOfPoints.push_back(int(rand() % 100));
+	srand(time(NULL));
 	arrayOfPoints.push_back(int(rand() % 100));
 
 	sort(arrayOfPoints.begin(), arrayOfPoints.end());
