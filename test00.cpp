@@ -14,5 +14,5 @@ int main()
 
 	cout << "pony attack = " << pony.GetAtt();
 
-	//cout << "Saber HP = " << Saber.GetHP(); 
+	cout << "Saber HP = " << Saber.GetHP();
 }
