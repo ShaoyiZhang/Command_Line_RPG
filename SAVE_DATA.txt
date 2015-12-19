@@ -1,5 +1,5 @@
 Hero: Aces
-Level: 1
+Level: 2
 EXP: 5
 Attack: 10
 Defense: 20

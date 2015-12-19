@@ -10,7 +10,7 @@ using std::map;
 class Bag
 {
 
-private:
+/*private:
 	const static size_t MAX_BAG_CAPACITY = 64;
 	map<Item, int> myBag;
     void IncrementCount(string itemName);
@@ -22,7 +22,7 @@ public:
 	bool UseItem(string itemName);
 	bool PutInBag(Item &itemName);
 	bool RemoveFromBag(Item &item, size_t number);
-    
+    */
 
 };
 
