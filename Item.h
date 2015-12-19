@@ -10,6 +10,7 @@ using std::vector;
 class Item
 {
 private:
+    string name;
 	int buyInPrice;
 	int sellOutPrice;
 	// each int indicate an attribute to be changed after using this item
@@ -18,6 +19,7 @@ private:
 
 public:
 	void use();
+    bool operator < (const Item &right) const;
 
 };
 

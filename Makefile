@@ -5,15 +5,15 @@ CXXFLAGS = -std=c++11 -Wall -Wextra -Wno-unused-parameter -Wno-unused-private-fi
 
 #CXXFLAGS = -std=c++11 -Wall -Wextra -Werror
 
-BINARIES= test00
+BINARIES= SaveAndLoad
 
 all: ${BINARIES}
 
-test00: test00.o Life.o Hero.o Item.o Bag.o NPC.o
+SaveAndLoad: SaveAndLoad.o Life.o Hero.o Item.o Bag.o Equipment.o Skill.o NPC.o
 	${CXX} $^ -o $@
 
 tests:${BINARIES}
-	./test00
+	./SaveAndLoad
 
 clean:
 	/bin/rm -f ${BINARIES} *.o

@@ -17,6 +17,7 @@ public:
 	Hero(string name, int attack, int defense, int stamina, int intelligence,
 		int stun, int weak, int HP, int MP, int totalHP, int totalMP, vector<int> skills) :
 		Life(name, attack, defense, stamina, intelligence, stun, weak, HP, MP, totalHP, totalMP, skills) {}
+	Hero(string name);
 	bool CheckLevelUp();
     bool CheckOwnership(Item& item);
     bool useItem(string itemName);
