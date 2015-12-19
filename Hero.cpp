@@ -1,5 +1,6 @@
 #include "Hero.h"
 #include <algorithm>
+#include <time.h>
 
 using std::sort;
 /*
@@ -15,6 +16,8 @@ Hero::Hero(string name):Life()
 	// use those points to find four interval which sums up to 100
 	// use the length of intervals to set four attributes of our hero
 	vector<int> arrayOfPoints;
+
+	srand(time(NULL));
 
 	arrayOfPoints.push_back(int(rand() % 100));
 	arrayOfPoints.push_back(int(rand() % 100));
