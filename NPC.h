@@ -18,7 +18,8 @@ private:
 public:
 	NPC(vector<Item> itemForSale, vector<Item> specialItem, vector<string>talkings, string specialMessage);
 	void Talking(Hero& h);
-	void Trade(Hero & h);
+	void Buy(Hero & h);
+	void Sell(Hero & h);
 	void TradeSpecialItem(Hero & h);
 	
 	//improve the quality of the equiment, might result in the destroy of the equiment 
