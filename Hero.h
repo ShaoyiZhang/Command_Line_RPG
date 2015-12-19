@@ -23,7 +23,9 @@ public:
     bool useItem(string itemName);
     void UpdateLevel();   // might call CheckLevelUp()
     bool PurchaseItem(string itemName);
+    bool PurchaseItem(Item item);
     bool SellItem(string itemName);
+    bool SellItem(Item item);
 	int GetLevel() { return level; }
 	int GetCoins() { return coins; }
 	int GetEXP() { return experience; }
