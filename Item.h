@@ -18,9 +18,12 @@ private:
 	vector<int> modifyAttributes;
 
 public:
+	Item(string name, int buyInPrice, int sellOutPrice):name(name),buyInPrice(buyInPrice), sellOutPrice(sellOutPrice){};
+	Item(string name, int buyInPrice, int sellOutPrice, vector<int> modifyAttributes){};
 	void use();
     bool operator < (const Item &right) const;
-
+    int GetBuyPrice(){ return this->buyInPrice; };
+    int GetSellPrice(){ return this->sellOutPrice; };
 };
 
 #endif
