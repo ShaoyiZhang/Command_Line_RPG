@@ -10,7 +10,7 @@ using std::vector;
 
 class Life
 {
-private:
+protected:
     string name;
     int attack;
     int defense;
