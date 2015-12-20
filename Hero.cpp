@@ -1,7 +1,10 @@
 #include "Hero.h"
 #include <algorithm>
 #include <time.h>
-
+#include <iostream>
+#include <cstdlib>
+using std::endl;
+using std::cout;
 using std::sort;
 /*
 Hero::Hero(string name, int attack, int defense, int stamina, int intelligence,
@@ -39,6 +42,19 @@ Hero::Hero(string name):Life()
 
 }
 
+int GetLevel()
+{
+	cout<<"Master, your level is " << this->level << "." << endl;
+}
+
+int GetCoins()
+{
+	cout<<"Master, you have " << this->coins << "Hero coins." << endl;
+}
+int GetEXP()
+{
+	cout<<"Master, you have " << this->experience << "EXP. To level up, you still need "<< (this->maxEXP - this->experience) << "EXP. Keep it up!" << endl;
+}
 bool Hero::CheckLevelUp()
 {
 	return false;

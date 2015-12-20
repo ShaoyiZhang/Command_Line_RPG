@@ -9,6 +9,7 @@ private:
 	int coins;
 	int level;
 	int experience;
+	int maxEXP;
 	Bag bag;
 	//vector<equipment> equips;
 
@@ -16,7 +17,7 @@ public:
 	//Hero();
 	Hero(string name, int attack, int defense, int stamina, int intelligence,
 		int stun, int weak, int HP, int MP, int totalHP, int totalMP, vector<int> skills) :
-		Life(name, attack, defense, stamina, intelligence, stun, weak, HP, MP, totalHP, totalMP, skills) {}
+		Life(name, attack, defense, stamina, intelligence, stun, weak, HP, MP, totalHP, totalMP, skills) {maxEXP = 5;}
 	Hero(string name);
 	bool CheckLevelUp();
     bool CheckOwnership(Item& item);
@@ -28,9 +29,11 @@ public:
     bool SellItem(string itemName);
     bool SellItem(Item item);
     bool SellItem(string itemName, int howMany);
-	int GetLevel() { return level; }
-	int GetCoins() { return coins; }
-	int GetEXP() { return experience; }
+
+    // Get Methods for player
+	int GetLevel();
+	int GetCoins();
+	int GetEXP();
 	string GetBag() { return bag.toString(); }
 
 	void GainItem(Item i) { bag.PutInBag(i); }
