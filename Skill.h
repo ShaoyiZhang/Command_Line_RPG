@@ -46,8 +46,8 @@ public:
     Skill(vector<pair<string,SingleSkill>> setOfSkills);
 
     // returns skill number(mapped value) for the new skill
-    int AddSkill(pair<string,SingleSkill> oneSkill);
-
+    int AddSkill(pair<string,SingleSkill> oneSkill); // may not need int as return type
+    void AddAllSkills(){};
     bool UseSkill(string skillName);
     bool UseSkill(int skillNumber);
     

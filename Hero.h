@@ -1,3 +1,6 @@
+#ifndef HERO_H_
+#define HERO_H_
+
 #include "Life.h"
 #include "Bag.h"
 
@@ -14,7 +17,7 @@ private:
 	//vector<equipment> equips;
 
 public:
-	//Hero();
+    Hero(){};
 	Hero(string name, int attack, int defense, int stamina, int intelligence,
 		int stun, int weak, int HP, int MP, int totalHP, int totalMP, vector<int> skills) :
 		Life(name, attack, defense, stamina, intelligence, stun, weak, HP, MP, totalHP, totalMP, skills) {maxEXP = 5;}
@@ -49,3 +52,4 @@ public:
 
 
 };
+#endif
