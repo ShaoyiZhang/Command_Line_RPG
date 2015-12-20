@@ -31,9 +31,12 @@ public:
     bool SellItem(string itemName, int howMany);
 
     // Get Methods for player
-	int GetLevel();
-	int GetCoins();
-	int GetEXP();
+    int GetLevel(){ return this->level; }
+    int GetCoins(){ return this->coins; }
+    int GetEXP(){ return this->experience; };
+    void PrintLevel();
+    void PrintCoins();
+    void PrintEXP();
 	string GetBag() { return bag.toString(); }
 
 	void GainItem(Item i) { bag.PutInBag(i); }

@@ -42,16 +42,16 @@ Hero::Hero(string name):Life()
 
 }
 
-int GetLevel()
+void Hero::PrintLevel()
 {
 	cout<<"Master, your level is " << this->level << "." << endl;
 }
 
-int GetCoins()
+void Hero::PrintCoins()
 {
 	cout<<"Master, you have " << this->coins << "Hero coins." << endl;
 }
-int GetEXP()
+void Hero::PrintEXP()
 {
 	cout<<"Master, you have " << this->experience << "EXP. To level up, you still need "<< (this->maxEXP - this->experience) << "EXP. Keep it up!" << endl;
 }
