@@ -75,7 +75,7 @@ void NPC::TradeSpecialItem(Hero & h) {
 	srand(time(NULL));
 	int index = rand() % size;
 	cout << "You are lucky today and I have something special to you\n";
-	cout << specialItem[index].GetName << "  $" << specialItem[index].GetBuyPrice() << endl;
+	cout << specialItem[index].GetName() << "  $" << specialItem[index].GetBuyPrice() << endl;
 	cout << "  " << specialItem[index].GetDescription() << endl;
 
 	cout << "\nDo you want to buy it? Enter Y to confirm and everything else otherwise\n";
