@@ -12,22 +12,24 @@ class Bag
 {
 
 private:
-	const static size_t MAX_BAG_CAPACITY = 64;
-	map<Item, int> myBag;
-    void IncrementCount(string itemName);
+	const static int MAX_BAG_CAPACITY = 64;
+	Item myBag[MAX_BAG_CAPACITY];
+	int used;
+   	void UpdateCount(int index, int amount);
+
 public:
-    Bag();
+    Bag(){};
     //Bag(pair<Item, int> oneBag);
-    
+
 	size_t GetUsed();
 	bool IsFull();
-	bool UseItem(string itemName);
+	int IsContain(Item &item); // -1 for not Contain , other value means index
+
+	//bool UseItem(string itemName);
 	bool UseItem(int itemNum);
 	bool PutInBag(Item &itemName);
-	bool RemoveFromBag(Item &item, size_t number);
+	bool RemoveFromBag(int Index, int amount);
 	string toString() const;
-
-
 };
 
 #endif
