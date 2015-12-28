@@ -3,7 +3,7 @@
 
 #include "Life.h"
 #include "Bag.h"
-
+//#include "NPC.h"
 
 class Hero: public Life
 {
@@ -24,15 +24,16 @@ public:
 	Hero(string name);
 	bool CheckLevelUp();
     bool CheckOwnership(Item& item);
-    bool useItem(string itemName);
+    void useItem(string itemName);
+    void useItem(int itemNum);
     void UpdateLevel();   // might call CheckLevelUp()
     bool PurchaseItem(string itemName);
     bool PurchaseItem(Item item);
-    bool PurchaseItem(string itemName, int howMany);
+    void PurchaseItem(Item item, int howMany);
     bool SellItem(string itemName);
     bool SellItem(Item item);
     bool SellItem(string itemName, int howMany);
-
+    void useItem(Item item);
     // Get Methods for player
     int GetLevel(){ return this->level; }
     int GetCoins(){ return this->coins; }

@@ -15,12 +15,12 @@ using std::iterator;
     }
 }
 */
-
+/*
 Bag::Bag(map<Item, int> oneBag)
 {
 
 }
-
+*/
 Bag::Bag()
 {
 	
@@ -41,9 +41,9 @@ bool Bag::IsFull()
 	return false;
 }
 
-bool Bag::UseItem(string itemName)
+bool Bag::UseItem(int itemNum)
 {
-	return false;
+    return false;
 }
 
 bool Bag::PutInBag(Item &itemName)

@@ -53,7 +53,7 @@ void NPC::Buy(Hero & h) {
 	}
 	cout << "Etner the number of " << itemForSale[index].GetName() << " you want to purchase";
 	cin >> number;
-	h.PurchaseItem(itemForSale[index].GetName(),number);
+	h.PurchaseItem(itemForSale[index],number);
 	cout << "Thanks for coming\n";
 }
 

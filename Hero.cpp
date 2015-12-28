@@ -57,16 +57,33 @@ void Hero::PrintEXP()
 }
 bool Hero::CheckLevelUp()
 {
-	return false;
+	if (this->maxEXP <= this->experience)
+		return false;
+  	else
+	{
+		this->experience = this->experience - maxEXP;
+		this->level++;
+		return true;
+    }
 }
 bool Hero::CheckOwnership(Item& item)
 {
 	return false;
 }
-bool Hero::useItem(string itemName)
+void Hero::useItem(int itemNum)
 {
-	return false;
+  	if (this->bag.UseItem(itemNum))
+  	{
+  		cout << "Sussesfully used.";
+  	}
+  	else
+  		cout << "Fail to use item!";
 }
+/*
+void Hero::useItem(Item item)
+{
+	this->bag.UseItem(item);
+}*/
 void Hero::UpdateLevel()   // might call CheckLevelUp()
 {
 }
@@ -79,9 +96,21 @@ bool Hero::PurchaseItem(Item item)
 {
 	return false;
 }
-bool Hero::PurchaseItem(string itemName, int howMany)
+void Hero::PurchaseItem(Item item, int howMany)
 {
-	return false;
+	if ((item.GetBuyPrice() * howMany) < this->coins)
+	{
+		cout << "Insufficient gold! Earn more money!";
+	}
+	else
+	{
+		cout << "Bought " << howMany << " " << item.GetName() << "s sussesfully!\n";
+		cout << "Continue purchasing? Enter Y for yes, N for no \n";
+		//bool continue = false;
+		//cin >> continue;
+		//if (continue)
+
+	}
 }
 bool Hero::SellItem(string itemName)
 {

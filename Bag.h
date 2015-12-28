@@ -17,10 +17,12 @@ private:
     void IncrementCount(string itemName);
 public:
     Bag();
-    Bag(map<Item, int> oneBag);
+    //Bag(pair<Item, int> oneBag);
+    
 	size_t GetUsed();
 	bool IsFull();
 	bool UseItem(string itemName);
+	bool UseItem(int itemNum);
 	bool PutInBag(Item &itemName);
 	bool RemoveFromBag(Item &item, size_t number);
 	string toString() const;
