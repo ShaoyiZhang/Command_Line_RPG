@@ -10,6 +10,7 @@ class Monster : public Life {
 private:
 	//secomd is a percent 1~1000, represent perecentage/10
 	vector<std::pair<Item, int>>dropItems;
+	//To Do: add a vector of Equiment drop off
 	int gold;
 	int EXP;
 public:
@@ -18,6 +19,7 @@ public:
 	Monster(string name, int attack, int defense, int stamina, int intelligence,
 		int TotalHP, int TotalMP, vector<int>skills, vector<std::pair<Item, int>>dpitems, int g, int exp)
 		: Life(name, attack, defense, stamina, intelligence, 0, 0, TotalHP, TotalMP, totalHP, TotalMP, skills), dropItems(dpitems), gold(g), EXP(exp) {}
+
 	int GiveGold();
 	int GiveEXP();
 	vector<Item> DropOff();
