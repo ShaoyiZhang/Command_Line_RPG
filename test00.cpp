@@ -46,7 +46,7 @@ int main() {
 	}
 	cout << endl;
 
-
+	/*
 	//Initilization Test for Dungeon
 	//Dungeon(const vector<vector<Monster>> &monsters, string s1, const vector<int> &goldByStages,
 		//const vector<int> &expByStages, const vector<std::pair<Item, int>> &itemsByStage);
@@ -67,6 +67,6 @@ int main() {
 	d1.DisplayFogAtLevel(1);
 	cout << endl;
 	d1.StartDungeon(Saber);
-
+	*/
 
 }
