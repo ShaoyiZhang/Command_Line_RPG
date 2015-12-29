@@ -109,7 +109,12 @@ bool Bag::RemoveFromBag(int index, int amount)
     }
 }
 
-string Bag::toString() const
+string Bag::ToString() const
 {
-	return "stub";
+    string out = "";
+	for (int i = 0; i < used; i++)
+    {
+        out+=this->myBag[i].ToString();
+    }
+    return out;
 }

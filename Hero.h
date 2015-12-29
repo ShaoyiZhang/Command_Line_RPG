@@ -41,7 +41,7 @@ public:
     void PrintLevel();
     void PrintCoins();
     void PrintEXP();
-	string GetBag() { return bag.toString(); }
+	string GetBag() { return bag.ToString(); }
 
 	void GainItem(Item i) { bag.PutInBag(i); }
 	void GainCoins(int i) { coins += i; }
