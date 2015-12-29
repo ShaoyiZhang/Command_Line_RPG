@@ -5,6 +5,7 @@
 #include "Item.h"
 #include <time.h>
 
+using std::to_string;
 
 class Monster : public Life {
 private:
@@ -23,6 +24,8 @@ public:
 	int GiveGold();
 	int GiveEXP();
 	vector<Item> DropOff();
+	string To_String_Part_One();
+	string To_String_Part_Two();
 };
 
 #endif

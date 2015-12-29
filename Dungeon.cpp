@@ -66,16 +66,25 @@ Dungeon::Dungeon(const vector<vector<Monster>> &monsters, string s1, const vecto
 }
 
 void Dungeon::DisplayFogAtLevel(int n) {
+  int size = monsters[n-1].size();
 	for (int i = 0; i < 10; i++) {
 	for (int k = 0; k < 41; k++){
 	  cout<<"-";
 	}
 	cout<<endl;
-	  cout<<"| ";
-		for (int j = 0; j < 10; j++) {
-			std::cout << Fog_of_War[n-1][i][j] << " | ";
-		}
-		cout<<endl;
+	cout<<"| ";
+	for (int j = 0; j < 10; j++) {
+	       	std::cout << Fog_of_War[n-1][i][j] << " | ";
+       	}
+
+	if(i/2<size){
+	  if(i%2==0){
+	    cout<<"Monster No."<<i/2+1<<"  "<<monsters[n-1][i/2].To_String_Part_One();
+	  }
+	  else
+	    cout<<"  "<<monsters[n-1][i/2].To_String_Part_Two();
+	}
+       	cout<<endl;
 	}
 	for (int i = 0; i < 41; i++){
 	  cout<<"-";

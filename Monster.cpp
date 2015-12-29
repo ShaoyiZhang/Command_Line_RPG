@@ -34,3 +34,20 @@ vector<Item> Monster::DropOff() {
 	}
 	return drops;
 }
+
+string Monster::To_String_Part_One(){
+  string result = "";
+  result+=(this->GetName()+"   ");
+  result+=("HP: "+to_string(this->GetHP())+"   ");
+  result+=("MP: "+to_string(this->GetMP()));
+  return result;
+}
+
+string Monster::To_String_Part_Two(){
+  string result = "";
+  result+=("ATT: " + to_string(this->GetAtt())+"   ");
+  result+=("DEF: "+to_string(this->GetDef())+"   ");
+  result+=("EXP: "+to_string(this->EXP)+"   ");
+  result+=("Gold "+to_string(this->gold/2)+"~"+to_string(this->gold));
+  return result;
+}
