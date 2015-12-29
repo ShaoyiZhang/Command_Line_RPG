@@ -12,7 +12,7 @@ int main() {
   //int myAttr[] = {1,3,4};
   //vector<int> modifyAttr (myAttr, myAttr + sizeof(myAttr) / sizeof(int) );
 
-  Item::Item foo("Ex-Calibur","Sword owned by King Arthur", 99999, 100,10);
+  Item foo("Ex-Calibur","Sword owned by King Arthur", 99999, 100,10);
 
   ASSERT_EQUALS("Ex-Calibur            10          100",foo.ToString());
  // ASSERT_EQUALS("bar",WordCount::stripWord("bar?"));
