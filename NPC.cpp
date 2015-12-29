@@ -58,7 +58,7 @@ void NPC::Buy(Hero & h) {
 }
 
 void NPC::Sell(Hero & h) {
-	cout << h.GetBag() << endl;
+	cout << h.GetBag().ToString() << endl;
 	string itemName = "";
 	int number = 0;
 	cout << "Enter the name of the Item you wan to sell\n";

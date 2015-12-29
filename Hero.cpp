@@ -70,14 +70,24 @@ bool Hero::CheckOwnership(Item& item)
 {
 	return false;
 }
-void Hero::useItem(int itemNum)
+// ########################### TO DO ##############################
+void Hero::UseItem(int itemNum)
+{
+}
+
+
+bool Hero::UseItem(int itemNum, Hero &h, Monster &m)
 {
   	if (this->bag.UseItem(itemNum))
   	{
   		cout << "Sussesfully used.";
+  		return true;
   	}
   	else
+  	{
   		cout << "Fail to use item!";
+  		return false;
+  	}
 }
 /*
 void Hero::useItem(Item item)
@@ -124,3 +134,4 @@ bool Hero::SellItem(string itemName, int howMany)
 {
 	return false;
 }
+

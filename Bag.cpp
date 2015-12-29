@@ -6,13 +6,13 @@ using std::cout;
 {
     for (map<Item, int>::iterator current = oneBag.begin(); current!=oneBag.end(); current++)
     {
-		
+        
         string tempName = current->first();
-        if (myBag.find(tempName) != myBag.end())
+        if (Bag.find(tempName) != Bag.end())
         {
             
         }
-        this->myBag;
+        this->Bag;
     }
 }
 */
@@ -21,36 +21,42 @@ Bag::Bag(map<Item, int> oneBag)
 {
 
 }
-
+*/
 Bag::Bag()
 {
-	
+    
 }
 
-void Bag::UpdateCount(string itemName)
-{
-  	return;  
-}
-*/
 size_t Bag::GetUsed()
 {
-	return this->used;
+    return this->used;
 }
 
 bool Bag::IsFull()
 {
-	return used >= MAX_BAG_CAPACITY;
+    return used >= MAX_BAG_CAPACITY;
 }
 
-bool Bag::UseItem(int itemNum)
+bool Bag::UseItem(int itemNum, Hero &h, Monster &m)
 {
-    return false;
+    if (itemNum<used)
+    {
+        if (this->bag[itemNum].Use(h,m))
+        {
+            if (bag[itemNum].GetCount() == 0)
+            {
+                this->RemoveFromBag(itemNum,0);
+            }
+            return true;
+        }
+    }
+        return false; 
 }
 
 int Bag::IsContain(Item &item)
 {
     int index = 0;
-    for (size_t i = 0; (i < used)&&(myBag[i].GetName() != item.GetName()); i++)
+    for (size_t i = 0; (i < used)&&(bag[i].GetName() != item.GetName()); i++)
         {
             index++;
         }
@@ -62,7 +68,7 @@ int Bag::IsContain(Item &item)
 
 void Bag::UpdateCount(int index, int amount)
 {
-    this->myBag[index].IncrCount(amount);
+    this->bag[index].IncrCount(amount);
 }
 
 bool Bag::PutInBag(Item &newItem)
@@ -73,13 +79,13 @@ bool Bag::PutInBag(Item &newItem)
         index = this->IsContain(newItem);
         if (index == -1)
         {
-            this->myBag[index] = newItem;
+            this->bag[index] = newItem;
             cout << "I have put " << newItem.GetName() << " into your bag, Master." << endl;
         }
         else
         {
-            this->UpdateCount(index, newItem.GetCount() + myBag[index].GetCount());
-            cout << "You now have " << myBag[index].GetCount() << " " << myBag[index].GetName() << "s, Master." << endl;
+            this->UpdateCount(index, newItem.GetCount() + bag[index].GetCount());
+            cout << "You now have " << bag[index].GetCount() << " " << bag[index].GetName() << "s, Master." << endl;
         }
 
         return true;  
@@ -93,17 +99,17 @@ bool Bag::PutInBag(Item &newItem)
 bool Bag::RemoveFromBag(int index, int amount)
 {
     if (index >= used)
-	   return false;
+       return false;
     else // does contain, start removal
     {
-        if (myBag[index].GetCount() == amount)
+        if (bag[index].GetCount() == amount)
         {
-            myBag[index] = myBag[used-1];
-            myBag[used-1] = Item();
+            bag[index] = bag[used-1];
+            bag[used-1] = Item();
         }
         else
         {
-            myBag[index].IncrCount(-amount);
+            bag[index].IncrCount(-amount);
         }
         return true;
     }
@@ -112,9 +118,9 @@ bool Bag::RemoveFromBag(int index, int amount)
 string Bag::ToString() const
 {
     string out = "";
-	for (int i = 0; i < used; i++)
+    for (int i = 0; i < used; i++)
     {
-        out+=this->myBag[i].ToString();
+        out+=this->bag[i].ToString();
     }
     return out;
 }

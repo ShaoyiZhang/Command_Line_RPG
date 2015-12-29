@@ -44,6 +44,16 @@ public:
     int GetMP(){ return this->MP; };
     int GetTotalHP(){ return this->totalHP; };
     int GetTotalMP(){ return this->totalMP; };
+    void UpdateAtt(int amount){ this->attack+=amount; };
+    void UpdateDef(int amount){ this->defense+=amount; };
+    void UpdateStam(int amount){ this->stamina+=amount; };
+    void UpdateIntl(int amount){ this->intelligence+=amount; };
+    void UpdateStun(int amount){ this->stun+=amount; };
+    void UpdateWeak(int amount){ this->weak+=amount; };
+    void UpdateHP(int amount){ this->HP+=amount; };
+    void UpdateMP(int amount){ this->MP+=amount; };
+    void UpdateTotalHP(int amount){ this->totalHP+=amount; };
+    void UpdateTotalMP(int amount){ this->totalMP+=amount; };
 
 };
 

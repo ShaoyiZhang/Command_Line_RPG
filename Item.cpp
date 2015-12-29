@@ -1,9 +1,6 @@
 #include "Item.h"
 #include <sstream>
-void Item::use()
-{
-    
-}
+
 
 bool Item::operator< (const Item &right) const
 {
@@ -32,4 +29,13 @@ string Item::ToString() const
 	out<<"          ";  // 10 spaces
 	out<<this->sellOutPrice;
 	return out.str();
+}
+
+bool Item::Use(Hero &h, Monster &m)
+{
+	if (this->GetCount() > 0)
+	{
+		return true;
+	}
+	return false;
 }

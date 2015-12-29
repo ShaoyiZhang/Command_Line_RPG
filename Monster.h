@@ -23,6 +23,7 @@ public:
 
 	int GiveGold();
 	int GiveEXP();
+//    void UpdateHP(int amount){ this->}; // ################################### TO DO ##########################
 	vector<Item> DropOff();
 	string To_String_Part_One();
 	string To_String_Part_Two();

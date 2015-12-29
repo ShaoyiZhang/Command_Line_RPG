@@ -6,6 +6,24 @@ World::World(Hero hero, Dungeon dungeons, vector<NPC>npcs) {
 	this->npcs = npcs;
 }
 
+
+void World::FightInstruction()
+{
+    cout << "It's your turn. You can chose from: "
+    << "1. Attack\n"
+    << "2. Defense\n"		// For now, it means do nothing
+    << "3. Use Skill\n"
+    << "4. Use Item\n"
+    << "Pleas enter a number and press enter";
+    //<< "If you're Pro, try action number+P to "
+}
+
+void World::Help()
+{
+    
+}
+
+
 string GetNextWord(string &contents, int &index) {
 	int size = contents.size();
 	if (index >= size) return "";
@@ -155,3 +173,97 @@ void World::Save(Hero& h) {
 	myfile.close();
 
 }
+
+void World::Attack(Hero &h, Monster &m, int attacker)  // 0 for monster, 1 for hero
+{
+    
+}
+
+void World::MonsterTurn(Hero &h, Monster &m)
+{
+    
+}
+
+void World::Fight(Hero &h, Monster &m)
+{
+	Fight(h,m,0);
+}
+
+void World::Fight(Hero &h, Monster &m, int pro)
+{
+	if (h.GetHP() <= 0)
+	{
+		cout << "You are defeated, Master. I will wait for your respawn in GG valley ...";
+		this->dungeons.LeaveDungeon(h);
+	}
+	else
+	{
+		if (pro == 0)
+			FightInstruction();
+		cout << "Pro Mode, Your Turn:";
+        int instruction;
+		cin >> instruction;
+		
+		switch (instruction)
+		{
+			case 1:		// Attack
+            {
+				m.UpdateHP(h.GetAtt()-m.GetDef()>m.GetHP()?0:h.GetAtt()-m.GetDef());
+				break;
+            }
+			case 2:		// Defense
+            {
+                break;
+            }
+			case 3:		// Use Skill
+            {
+                cout << "Which skill do you want to use?";
+				if (pro == 0)
+					h.SkillsToString();
+				int skillNum = -1;
+				cin >> skillNum;
+				h.UseSkill(skillNum);
+				break;
+            }
+			case 4:		// Use Item
+            {
+                cout << "Which item do you want to use?";
+				if (pro == 0)
+					h.GetBag().ToString();
+				int itemNum = -1;
+				cin >> itemNum;
+				h.UseItem(itemNum);
+				break;
+            }
+			case 0:		// Pro mode
+            {
+                Fight(h,m,1);
+				return;
+				break;
+            }
+			case 9:		// Call for Help
+            {
+                this->Help();
+				break;
+            }
+			defalt:
+            {
+				cerr << "wrong button pressed!";
+				Fight(h,m,pro);
+				return;
+            }
+		}
+		MonsterTurn(h,m);
+		Fight(h,m,pro);
+	}
+}
+
+
+
+
+
+
+
+
+
+

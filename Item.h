@@ -7,6 +7,9 @@
 using std::string;
 using std::vector;
 
+class Hero;
+class Monster;
+
 class Item
 {
 private:
@@ -24,7 +27,7 @@ public:
 	Item():name("..."), description("..."), buyInPrice(0), sellOutPrice(0), count(0){};
 	Item(string name,string description, int buyInPrice, int sellOutPrice,int count):name(name),description(description), buyInPrice(buyInPrice), sellOutPrice(sellOutPrice), count(count){};
 	Item(string name, string description, int buyInPrice, int sellOutPrice, vector<int> modifyAttributes, int count):name(name),description(description), buyInPrice(buyInPrice), sellOutPrice(sellOutPrice),modifyAttributes(modifyAttributes), count(count){};
-	void use();
+	bool Use(Hero &h, Monster &m);
     bool operator < (const Item &right) const;
     //int SetCount(int count){ this->count = count; }
     void IncrCount(int amount){ this->count += amount; };

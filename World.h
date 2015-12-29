@@ -18,7 +18,15 @@ public:
 	World(Hero hero, Dungeon dungeons, vector<NPC>npcs);
 	void Save(Hero& h);
 	void Load();
-	
+    
+    static void FightInstruction();
+    void Attack(Hero &h, Monster &m, int attacker);
+    void MonsterTurn(Hero &h, Monster &m);
+    
+    
+	void Fight(Hero &h, Monster &m);
+    void Fight(Hero &h, Monster &m, int pro);
+	static void Help();
 };
 
 
