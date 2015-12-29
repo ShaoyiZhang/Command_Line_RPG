@@ -67,17 +67,17 @@ Dungeon::Dungeon(const vector<vector<Monster>> &monsters, string s1, const vecto
 
 void Dungeon::DisplayFogAtLevel(int n) {
 	for (int i = 0; i < 10; i++) {
-	for (int k = 0; k < 23; k++){
+	for (int k = 0; k < 31; k++){
 	  cout<<"-";
 	}
 	cout<<endl;
 	  cout<<"|";
 		for (int j = 0; j < 10; j++) {
-			std::cout << Fog_of_War[n-1][i][j] << "|";
+			std::cout << Fog_of_War[n-1][i][j] << " |";
 		}
-		cout<<"|" << endl;
+		cout<<endl;
 	}
-	for (int i = 0; i < 23; i++){
+	for (int i = 0; i < 31; i++){
 	  cout<<"-";
 	}
 	cout << endl << endl;
