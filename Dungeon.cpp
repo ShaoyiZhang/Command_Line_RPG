@@ -79,7 +79,7 @@ void Dungeon::DisplayFogAtLevel(int n) {
 
 	if(i/2<size){
 	  if(i%2==0){
-	    cout<<"Monster No."<<i/2+1<<"  "<<monsters[n-1][i/2].To_String_Part_One();
+	    cout<<"Monster No."<<i/2<<"  "<<monsters[n-1][i/2].To_String_Part_One();
 	  }
 	  else
 	    cout<<"  "<<monsters[n-1][i/2].To_String_Part_Two();
