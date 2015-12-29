@@ -20,7 +20,7 @@ void World::FightInstruction()
 
 void World::Help()
 {
-    
+    cout << "How can I help you, Master";
 }
 
 
@@ -176,12 +176,20 @@ void World::Save(Hero& h) {
 
 void World::Attack(Hero &h, Monster &m, int attacker)  // 0 for monster, 1 for hero
 {
-    
+	if (attacker == 1)
+		m.UpdateHP(h.GetAtt()-m.GetDef());//>m.GetHP()?0:h.GetAtt()-m.GetDef());
+	elif(attacker == 0)
+		h.UpdateHP(m.GetAtt()-h.GetDef());//>h.GetHP()?0:m.GetAtt()-h.GetDef());
+	else
+		cout << "Error: Invalid Attacker!";
 }
 
 void World::MonsterTurn(Hero &h, Monster &m)
 {
-    
+    //srand(time(NULL));
+
+    // Temperory solution for testing, monster only attack
+	this->Attack(h,m,0)
 }
 
 void World::Fight(Hero &h, Monster &m)
@@ -208,7 +216,7 @@ void World::Fight(Hero &h, Monster &m, int pro)
 		{
 			case 1:		// Attack
             {
-				m.UpdateHP(h.GetAtt()-m.GetDef()>m.GetHP()?0:h.GetAtt()-m.GetDef());
+				Attack(h,m,1);
 				break;
             }
 			case 2:		// Defense
