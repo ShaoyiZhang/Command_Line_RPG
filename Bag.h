@@ -29,7 +29,7 @@ public:
 	bool UseItem(int itemNum);
 	bool PutInBag(Item &itemName);
 	bool RemoveFromBag(int Index, int amount);
-	string toString() const;
+	string ToString() const;
 };
 
 #endif
