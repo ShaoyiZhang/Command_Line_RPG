@@ -64,9 +64,9 @@ int main() {
 	vector<int>expByStages;
 	expByStages.push_back(20);
 	vector<std::pair<Item, int>> itemsByStage;
-	Dungeon d1(m1, s1, goldByStages, expByStages, itemsByStage);
-
-	d1.DisplayFogAtLevel(1);
+	itemsByStage.push_back(pair<Item,int>(Primary_HP_Potion,500));
+	Dungeon d1("Dark Forest",1,m1, s1, goldByStages, expByStages, itemsByStage);
+;
 	cout << endl;
 	d1.StartDungeon(Saber);
 	

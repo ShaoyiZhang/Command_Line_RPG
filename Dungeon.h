@@ -16,7 +16,11 @@ private:
 	vector<vector<vector<char>>>stages;
 	//vector represents the same stage but with the Fog of War
 	vector<vector<vector<char>>>Fog_of_War;
+	//vector that represents if hero clear the certian level
+	vector<bool>levelClear;
 
+	string name;
+	int minimumLevelEnter;
 	int level;
 	//from 1 to the level, 
 	int LevelComplete=0;
@@ -28,9 +32,9 @@ private:
 	vector<std::pair<Item, int>> itemsByStage;
 
 public:
-	Dungeon(const vector<vector<Monster>> &monsters, const vector<vector<vector<char>>> &stages, const vector<int> &goldByStages,
+	Dungeon(string name, int minimumLevelEnte, const vector<vector<Monster>> &monsters, const vector<vector<vector<char>>> &stages, const vector<int> &goldByStages,
 		const vector<int> &expByStages, const vector<std::pair<Item, int>> &itemsByStage);
-	Dungeon(const vector<vector<Monster>> &monsters, string s1, const vector<int> &goldByStages,
+	Dungeon(string name, int minimumLevelEnte, const vector<vector<Monster>> &monsters, string s1, const vector<int> &goldByStages,
 		const vector<int> &expByStages, const vector<std::pair<Item, int>> &itemsByStage);
 	void StartDungeon(Hero & h) ;
 	void LeaveDungeon(Hero& h);
