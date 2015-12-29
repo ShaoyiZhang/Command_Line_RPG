@@ -83,23 +83,20 @@ int GetDirection()
 
 	do
 	{
-		int ch = _getch();
-		if (isascii(ch))
-			continue;
-
-		ch = _getch();
-		switch (ch)
+	  char c = ' ';
+	  c = cin.get();
+		switch (c)
 		{
-		case 72:
+		case 'w':
 			ret = 2; // top
 			break;
-		case 75:
+		case 'a':
 			ret = 1; // left 
 			break;
-		case 77:
+		case 'd':
 			ret = 3; // right
 			break;
-		case 80:
+		case 's':
 			ret = 4; // down
 			break;
 		default:
