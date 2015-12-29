@@ -9,7 +9,7 @@ BINARIES= test00 test01
 
 all: ${BINARIES}
 
-test00: test00.o Life.o Hero.o Item.o Bag.o Equipment.o Skill.o NPC.o Monster.o
+test00: test00.o Life.o Hero.o Item.o Bag.o Equipment.o Skill.o NPC.o Monster.o Dungeon.o
 	${CXX} $^ -o $@
 test01: test01.o Item.o Bag.o tddFuncs.o
 	${CXX} $^ -o $@
