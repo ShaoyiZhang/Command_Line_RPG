@@ -10,12 +10,12 @@ Dungeon::Dungeon(const vector<vector<Monster>> &monsters, const vector<vector<ve
 	this->itemsByStage = itemsByStage;
 	level = stages.size();
 
-	//initalize the Fog_Of_Wall with vetcotr of 7x7 '?'
+	//initalize the Fog_Of_Wall with vetcotr of 10x10 '?'
 	vector<char>temp;
 	vector<vector<char>> fog;
-	for (int i = 0; i < 7; i++)
+	for (int i = 0; i < 10; i++)
 		temp.push_back('?');
-	for (int i = 0; i < 7; i++)
+	for (int i = 0; i < 10; i++)
 		fog.push_back(temp);
 
 	//0,0 is where hero will be at first
@@ -32,16 +32,16 @@ Dungeon::Dungeon(const vector<vector<Monster>> &monsters, string s1, const vecto
 	this->itemsByStage = itemsByStage;
 	this->expByStages = expByStages;
 	this->itemsByStage = itemsByStage;
-	level = s1.size() / 49;
+	level = s1.size() / 100;
 	int index = 0;
-	if (s1.size()%49 != 0) {
+	if (s1.size()%100 != 0) {
 		cerr << "size of the string not match" << endl;
 	}
 	for (int L = 0; L < level; L++) {
 		stages.push_back(vector<vector<char>>());
-		for (int i = 0; i < 7; i++) {
+		for (int i = 0; i < 10; i++) {
 			stages[L].push_back(vector<char>());
-			for (int j = 0; j < 7; j++) {
+			for (int j = 0; j < 10; j++) {
 				stages[L][i].push_back(s1[index]);
 				index++;
 			}
@@ -49,12 +49,12 @@ Dungeon::Dungeon(const vector<vector<Monster>> &monsters, string s1, const vecto
 	}
 
 
-	//initalize the Fog_Of_Wall with vetcotr of 7x7 '?'
+	//initalize the Fog_Of_Wall with vetcotr of 10x10 '?'
 	vector<char>temp;
 	vector<vector<char>> fog;
-	for (int i = 0; i < 7; i++)
+	for (int i = 0; i < 10; i++)
 		temp.push_back('?');
-	for (int i = 0; i < 7; i++)
+	for (int i = 0; i < 10; i++)
 		fog.push_back(temp);
 
 	//0,0 is where hero will be at first
@@ -66,11 +66,19 @@ Dungeon::Dungeon(const vector<vector<Monster>> &monsters, string s1, const vecto
 }
 
 void Dungeon::DisplayFogAtLevel(int n) {
-	for (int i = 0; i < 7; i++) {
-		for (int j = 0; j < 7; j++) {
-			std::cout << Fog_of_War[n-1][i][j] << " ";
+	for (int i = 0; i < 10; i++) {
+	for (int k = 0; k < 23; k++){
+	  cout<<"-";
+	}
+	cout<<endl;
+	  cout<<"|";
+		for (int j = 0; j < 10; j++) {
+			std::cout << Fog_of_War[n-1][i][j] << "|";
 		}
-		cout << endl;
+		cout<<"|" << endl;
+	}
+	for (int i = 0; i < 23; i++){
+	  cout<<"-";
 	}
 	cout << endl << endl;
 }
@@ -114,20 +122,20 @@ void Dungeon::ClearAllNearBlock() {
 		if (playerY > 0) {
 			Fog_of_War[currentLevel][playerX - 1][playerY - 1] = stages[currentLevel][playerX - 1][playerY - 1];
 		}
-		if (playerY < 6) {
+		if (playerY < 9) {
 			Fog_of_War[currentLevel][playerX - 1][playerY + 1] = stages[currentLevel][playerX - 1][playerY + 1];
 		}
 	}
 	if(playerY>0)
 	  Fog_of_War[currentLevel][playerX][playerY - 1] = stages[currentLevel][playerX][playerY - 1];
-	if(playerY<6)
+	if(playerY<9)
 	  Fog_of_War[currentLevel][playerX][playerY + 1] = stages[currentLevel][playerX][playerY + 1];
-	if (playerX < 6) {
+	if (playerX < 9) {
 		Fog_of_War[currentLevel][playerX + 1][playerY] = stages[currentLevel][playerX + 1][playerY];
 		if (playerY > 0) {
 			Fog_of_War[currentLevel][playerX + 1][playerY - 1] = stages[currentLevel][playerX + 1][playerY - 1];
 		}
-		if (playerY < 6) {
+		if (playerY < 9) {
 			Fog_of_War[currentLevel][playerX + 1][playerY + 1] = stages[currentLevel][playerX + 1][playerY + 1];
 		}
 	}
@@ -149,9 +157,9 @@ void Dungeon::StartDungeon(Hero & h) {
 				playerY -= 1;
 			else if (directiopn == 2 && playerX > 0)
 				playerX -= 1;
-			else if (directiopn == 3 && playerY < 6)
+			else if (directiopn == 3 && playerY < 9)
 				playerY += 1;
-			else if (directiopn == 4 && playerX < 6)
+			else if (directiopn == 4 && playerX < 9)
 				playerX += 1;
 			Fog_of_War[L][playerX][playerY] = 'H';
 			//Display the 8 blocks near the hero

@@ -57,7 +57,8 @@ int main() {
 	vector<vector<Monster>>m1;
 	m1.push_back(monsters);
 	vector<vector<vector<char>>> stages;
-	string s1 = "S        0 C 1        T 1  0     C  0  T        E";
+	string s1 = "S      000  0 C 1 000000       T 1  0  000   C 000 0  T000        E                                 ";
+	cout<<"Length of s1 is "<<s1.size()<<endl;
 	vector<int>goldByStages;
 	goldByStages.push_back(20);
 	vector<int>expByStages;

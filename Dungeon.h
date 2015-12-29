@@ -6,7 +6,7 @@
 #include<string>
 using namespace std;
 
-//Each stage is 7x7
+//Each stage is 10x10
 class Dungeon {
 private:
 	//vector reprents the monster in each stage, monsters[0][0] reprents monter No 0 in stage 0
