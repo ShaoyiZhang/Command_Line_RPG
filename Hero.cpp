@@ -94,14 +94,22 @@ bool Hero::UseItem(int itemNum, Hero &h, Monster &m)
   		return false;
   	}
 }
-/*
-void Hero::useItem(Item item)
+
+void Hero::GainItem(Item item)
 {
-	this->bag.UseItem(item);
-}*/
+	int index = this->bag.FindIndex(item);
+	if (index != -1)
+	{
+		this->bag.UpdateCount(index, 1);
+	}
+	else
+		this->bag.PutInBag(item);
+}
+
 void Hero::UpdateLevel()   // might call CheckLevelUp()
 {
 }
+
 bool Hero::PurchaseItem(string itemName)
 {
 	return false;
@@ -111,7 +119,7 @@ bool Hero::PurchaseItem(Item item)
 {
 	return false;
 }
-void Hero::PurchaseItem(Item item, int howMany)
+void Hero::PurchaseItem(Item item, int howMany)   // ############### TO DO #####################
 {
 	if ((item.GetBuyPrice() * howMany) < this->coins)
 	{
@@ -124,7 +132,6 @@ void Hero::PurchaseItem(Item item, int howMany)
 		//bool continue = false;
 		//cin >> continue;
 		//if (continue)
-
 	}
 }
 bool Hero::SellItem(string itemName)

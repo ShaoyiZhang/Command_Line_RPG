@@ -44,7 +44,7 @@ public:
     void PrintEXP();
     // string GetBag() { return bag.ToString(); }
 
-    void GainItem(Item i) { bag.PutInBag(i); }
+    void GainItem(Item i);
     void GainCoins(int i) { coins += i; }
     void GainEXP(int i) { experience += i; UpdateLevel(); };
     

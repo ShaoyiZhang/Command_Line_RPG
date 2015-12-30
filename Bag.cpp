@@ -53,7 +53,7 @@ bool Bag::UseItem(int itemNum, Hero &h, Monster &m)
         return false; 
 }
 
-int Bag::IsContain(Item &item)
+int Bag::FindIndex(Item &item)
 {
     int index = 0;
     for (size_t i = 0; (i < used)&&(bag[i].GetName() != item.GetName()); i++)
@@ -76,7 +76,7 @@ bool Bag::PutInBag(Item &newItem)
     int index = 0;
     if (!this->IsFull())
     {        
-        index = this->IsContain(newItem);
+        index = this->FindIndex(newItem);
         if (index == -1)
         {
             this->bag[index] = newItem;
