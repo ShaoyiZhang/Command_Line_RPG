@@ -101,13 +101,9 @@ Dungeon::Dungeon(string name, int minimumLevelEnter, const vector<int> &minGold,
   int mIndex = 0;
   for(int l=0; l<level; l++){
     monstersByPosition.push_back(vector<pair<int,Monster>>());
-    cout<<"level = "<<l<<endl;
     for(int i=0; i<10; i++){
-      cout<<"i = "<<i<<endl;
       for(int j=0; j<10; j++){
-	cout<<"j = "<<j<<endl;
 	tmp = stages[l][i][j];
-	cout<<"tmp = "<<tmp<<endl;
 	if(isdigit(tmp)){
 	  mIndex = 10*i+j;
 	  monstersByPosition[l].push_back(pair<int,Monster>(mIndex,monsters[l][(int)tmp-'0']));

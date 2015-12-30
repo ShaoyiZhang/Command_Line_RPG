@@ -11,7 +11,7 @@ int main() {
 	//Initaliziation Test for Life and Hero
 	vector<int>temp;
 	Life pony = Life("person", 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, temp);
-	Hero Saber = Hero("Saber", 10, 10, 3, 4, 5, 6, 7, 8, 9, 10, temp);
+	Hero Saber = Hero("Saber", 10, 10, 3, 4, 5, 6, 30, 8, 31, 10, temp);
 
 
     
@@ -47,6 +47,25 @@ int main() {
 	}
 	cout << endl;
 
+
+	//Monster 02 with same dropoff
+	Monster monster_NO2("Bat", 13, 1, 4, 2, 11, 0, temp, dpitems, 7, 7);
+	cout << "The name of this monter for testing is " << monster_NO2.GetName()<<endl;
+	cout << "The gold that monster_NO2 will drop is " << monster_NO2.GiveGold()<<endl;
+	drop_from_Monster1 = monster_NO2.DropOff();
+	cout << "The Exp that this monster_NO2 will give is " << monster_NO2.GiveEXP() << endl;
+	cout << "The size of the vector of Item that this monster will give is " << drop_from_Monster1.size() << endl;
+	if (drop_from_Monster1.size() != 0) {
+		for (Item i : drop_from_Monster1)
+			cout<<"The name of the drop of is " << i.GetName() << endl;
+	}
+	cout << endl;
+
+
+	
+
+
+
 	
 	//Initilization Test for Dungeon
 	//Dungeon(const vector<vector<Monster>> &monsters, string s1, const vector<int> &goldByStages,
@@ -56,24 +75,34 @@ int main() {
 	monsters.push_back(monster_NO1);
 	vector<vector<Monster>>m1;
 	m1.push_back(monsters);
+	//Monster for second level
+	monsters.clear();
+	monsters.push_back(monster_NO1);
+	monsters.push_back(monster_NO2);
+	m1.push_back(monsters);
 	vector<vector<vector<char>>> stages;
-        string s1 = "S      000  0 C 1 000000       T 1  0  000   C 000 0  T000        E                                 ";
+
+        string s1 = "S      000  0 C 1 000000       T 1  0  000   C 000 0  T000        E                                 S          0   C 0    0 1    0           0  1  1              0     C        0   C 1 C             E";
 	cout<<"Length of s1 is "<<s1.size()<<endl;
 	vector<int>goldByStages;
 	goldByStages.push_back(20);
+	goldByStages.push_back(40);
 	vector<int>expByStages;
 	expByStages.push_back(20);
+	expByStages.push_back(40);
 	vector<std::pair<Item, int>> itemsByStage;
+	itemsByStage.push_back(pair<Item,int>(Primary_HP_Potion,500));
 	itemsByStage.push_back(pair<Item,int>(Primary_HP_Potion,500));
 
 	vector<int>minGold;
 	vector<int>maxGold;
 	minGold.push_back(5);
+	minGold.push_back(10);
 	maxGold.push_back(20);
+	maxGold.push_back(30);
 	
 	Dungeon d1("Dark Forest",1,minGold, maxGold, m1, s1, goldByStages, expByStages, itemsByStage);
 	cout << endl;
-	cout<<"Saber's attack is "<<Saber.GetAtt()<<endl;
 	d1.StartDungeon(Saber);
 	
 
