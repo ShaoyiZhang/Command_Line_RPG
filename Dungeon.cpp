@@ -30,6 +30,21 @@ Dungeon::Dungeon(string name, int minimumLevelEnter, const vector<vector<Monster
 
   for(int i =0; i<level; i++)
     this->levelClear.push_back(false);
+  
+  char tmp = ' ';
+  int mIndex = 0;
+  //initalize monstersByPosition
+  for(int l=0; l<level; l++){
+    for(int i=0; i<10; i++){
+      for(int j=0; j<10; j++){
+	tmp = stages[l][i][j];
+	if(isdigit(tmp)){
+	  mIndex = 10*i+j;
+	  monstersByPosition[l].push_back(pair<int,Monster>(mIndex,monsters[l][(int)tmp-'0']));
+	}
+      }
+    }
+    }
 }
 
 Dungeon::Dungeon(string name, int minimumLevelEnter, const vector<vector<Monster>> &monsters, string s1, const vector<int> &goldByStages,
@@ -209,7 +224,7 @@ void Dungeon::FightInstruction()
     << "7. Enter Pro Mode\n"
     << "8. To Do, Call For Help\n"
     << "9. End Fight(Escape)\n"
-    << "Pleas type a number and press Enter";
+    << "Pleas type a number and press Enter\n";
     //<< "If you're Pro, try action number+P to "
 }
 
@@ -224,16 +239,18 @@ void Dungeon::Attack(Hero &h, Monster &m, int attacker)  // 0 for monster, 1 for
     if (attacker == 1) // Hero attacking
     {   
         int damage = h.GetAtt()-m.GetDef()/2<0?0:(h.GetAtt()-m.GetDef());
+	cout<<"Monster's defense is "<<m.GetDef()<<endl;
+	cout<<"Hero's attack is "<<h.GetAtt()<<endl;
         m.UpdateHP(-damage);
-        cout << "Monster received " << damage << " damage.\n";
-        cout << "Monster HP: " << m.GetHP() << std::endl;
+        cout << "\nMonster received " << damage << " damage.\n";
+        cout << "Monster HP: " << m.GetHP() << std::endl<<endl;
     }
     else if(attacker == 0)
      {
         int damage = m.GetAtt()-h.GetDef()<0?0:(m.GetAtt()-h.GetDef());
         h.UpdateHP(-damage);
         cout << "You received " << damage << " damage.\n";
-        cout << "Hero HP: " << h.GetHP() << std::endl;
+        cout << "Hero HP: " << h.GetHP() << std::endl<<endl;;
     }
     else
     {    
@@ -259,23 +276,29 @@ void Dungeon::Fight(Hero &h, Monster &m, int pro)
 {
     if (h.GetHP() <= 0)
     {
-        cout << "You have been defeated by " << m.GetName() << " , Master. I will wait for your respawn in GG valley ...";
+        cout << "You have been defeated by " << m.GetName() << " , Master. I will wait for your respawn in GG valley ...\n\n";
         LeaveDungeon(h);
     }
     else if (m.GetHP() <= 0)
     {
-        cout << "You have defeated " << m.GetName() << " .";
+        cout << "You have defeated " << m.GetName() << " .\n";
+	m.DefeatedBy(h);
         return;
     }
     else
     {
         if (pro == 7)
-            cout << "Pro Mode, Your Turn:";
+            cout << "Pro Mode, Your Turn:  ";
         else
             FightInstruction();
         int instruction;
-        cin >> instruction;
+	cin>>instruction;
         
+	while(instruction<1||instruction>9){
+	  cout<<"Wrong button pressed, only 0~9 is meaningful, try again\n";
+	  instruction = 1;
+	  cout<<"Instrcution I get this time is "<<instruction<<endl;
+	}
         switch (instruction)
         {
             case 1:     // Attack
@@ -324,8 +347,6 @@ void Dungeon::Fight(Hero &h, Monster &m, int pro)
             }
             default:
             {
-                cerr << "wrong button pressed! Only integer value 0 ~ 9 is useful.";
-                Fight(h,m,pro);
                 return;
             }
         }

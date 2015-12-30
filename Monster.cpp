@@ -20,7 +20,6 @@ int Monster::GiveGold() {
 	int temp = gold / 2;
 	srand(time(NULL));
 	temp = rand() % temp;
-	std::cout << "Extr gold it will give is " << temp << std::endl;
 	return gold / 2 + temp;
 }
 
@@ -28,7 +27,6 @@ vector<Item> Monster::DropOff() {
 	vector<Item> drops;
 	srand(time(NULL));
 	for (std::pair<Item, int> p : dropItems) {
-		std::cout << "rand() % 1000 is " << rand() % 1000 << std::endl;
 		if (rand() % 1000 < p.second)
 			drops.push_back(p.first);
 	}
@@ -41,8 +39,8 @@ void Monster::DefeatedBy(Hero& h){
   h.GainCoins(coins);
   h.GainEXP(GiveEXP());
   cout<<"You defeated "<<GetName()<<endl;
-  cout<<"Gold: "<<coins<<endl;
-  cout<<"EXP: "<<EXP<<endl;
+  cout<<"Gold gained: "<<coins<<endl;
+  cout<<"EXP gained: "<<EXP<<endl;
   vector<Item>temp = DropOff();
   if(temp.size()!=0){
     cout<<"Items:\n";

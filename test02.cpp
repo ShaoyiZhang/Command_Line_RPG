@@ -68,6 +68,7 @@ int main() {
 	Dungeon d1("Dark Forest",1,m1, s1, goldByStages, expByStages, itemsByStage);
 ;
 	cout << endl;
+	cout<<"Saber's attack is "<<Saber.GetAtt()<<endl;
 	d1.StartDungeon(Saber);
 	
 

@@ -21,6 +21,8 @@ private:
 	vector<vector<vector<char>>>Fog_of_War;
 	//vector that represents if hero clear the certian level
 	vector<bool>levelClear;
+	//true monster indexed by their position
+	vector<vector<pair<int,Monster>>> monstersByPosition;
 
 	string name;
 	int minimumLevelEnter;
