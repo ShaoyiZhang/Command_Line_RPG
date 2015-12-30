@@ -48,7 +48,7 @@ public:
     void GainCoins(int i) { coins += i; }
     void GainEXP(int i) { experience += i; UpdateLevel(); };
     
-    void UseSkill(int killNum);
+    void UseSkill(int skillNum);
     void SkillsToString(){};    /// #####################
     //bool WearEquip(Equipment equ);
     //bool TakeOffEquip(Equipment equ);

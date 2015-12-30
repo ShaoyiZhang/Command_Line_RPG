@@ -5,6 +5,9 @@
 #include<iostream>
 #include<string>
 using namespace std;
+//class World;
+//class Monster;
+//class Hero;
 
 //Each stage is 10x10
 class Dungeon {
@@ -40,6 +43,13 @@ public:
 	void LeaveDungeon(Hero& h);
 	void DisplayFogAtLevel(int n);
 	void ClearAllNearBlock();
+
+	static void Help();
+    static void FightInstruction();
+    void Attack(Hero &h, Monster &m, int attacker); // 0 for monster, 1 for hero
+    void MonsterTurn(Hero &h, Monster &m);
+	void Fight(Hero &h, Monster &m);
+    void Fight(Hero &h, Monster &m, int pro);
 };
 
 

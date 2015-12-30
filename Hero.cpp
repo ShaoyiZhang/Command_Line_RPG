@@ -70,6 +70,11 @@ bool Hero::CheckOwnership(Item& item)
 {
 	return false;
 }
+
+void Hero::UseSkill(int skillNum)
+{
+
+}
 // ########################### TO DO ##############################
 void Hero::UseItem(int itemNum)
 {

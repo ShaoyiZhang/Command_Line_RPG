@@ -19,14 +19,8 @@ public:
 	void Save(Hero& h);
 	void Load();
     
-    static void FightInstruction();
-    void Attack(Hero &h, Monster &m, int attacker); // 0 for monster, 1 for hero
-    void MonsterTurn(Hero &h, Monster &m);
-    
-    
-	void Fight(Hero &h, Monster &m);
-    void Fight(Hero &h, Monster &m, int pro);
-	static void Help();
+
+	
 };
 
 
