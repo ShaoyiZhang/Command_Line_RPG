@@ -291,26 +291,26 @@ void Dungeon::Fight(Hero &h, Monster &m, int pro)
             cout << "Pro Mode, Your Turn:  ";
         else
             FightInstruction();
-        int instruction;
+        char instruction=0;
 	cin>>instruction;
         
-	while(instruction<1||instruction>9){
+	while((instruction-'0')<1||(instruction-'0')>9){
 	  cout<<"Wrong button pressed, only 0~9 is meaningful, try again\n";
-	  instruction = 1;
+	  cin >> instruction;
 	  cout<<"Instrcution I get this time is "<<instruction<<endl;
 	}
         switch (instruction)
         {
-            case 1:     // Attack
+            case '1':     // Attack
             {
                 Attack(h,m,1);
                 break;
             }
-            case 2:     // Defense
+            case '2':     // Defense
             {
                 break;
             }
-            case 3:     // Use Skill
+            case '3':     // Use Skill
             {
                 cout << "Which skill do you want to use?";
                 if (pro != 7)
@@ -320,7 +320,7 @@ void Dungeon::Fight(Hero &h, Monster &m, int pro)
                 h.UseSkill(skillNum);
                 break;
             }
-            case 4:     // Use Item
+            case '4':     // Use Item
             {
                 cout << "Which item do you want to use?";
                 if (pro != 7)
@@ -330,18 +330,18 @@ void Dungeon::Fight(Hero &h, Monster &m, int pro)
                 h.UseItem(itemNum);
                 break;
             }
-            case 7:     // Pro mode
+            case '7':     // Pro mode
             {
                 Fight(h,m,7);
                 return;
                 break;
             }
-            case 8:     // Call for Help
+            case '8':     // Call for Help
             {
                 this->Help();
                 break;
             }
-            case 9:
+            case '9':
             {
               return;
             }
