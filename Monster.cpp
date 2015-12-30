@@ -35,6 +35,24 @@ vector<Item> Monster::DropOff() {
 	return drops;
 }
 
+
+void Monster::DefeatedBy(Hero& h){
+  int coins = GiveGold();
+  h.GainCoins(coins);
+  h.GainEXP(GiveEXP());
+  cout<<"You defeated "<<GetName()<<endl;
+  cout<<"Gold: "<<coins<<endl;
+  cout<<"EXP: "<<EXP<<endl;
+  vector<Item>temp = DropOff();
+  if(temp.size()!=0){
+    cout<<"Items:\n";
+    for(int i=0; i<temp.size();i++){
+      cout<<i+1<<". "<<temp[i].GetName()<<endl;
+    }
+  }
+  
+}
+
 string Monster::To_String_Part_One(){
   string result = "";
   result+=(this->GetName()+"   ");

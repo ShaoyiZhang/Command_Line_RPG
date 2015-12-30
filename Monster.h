@@ -3,9 +3,11 @@
 
 #include "Life.h"
 #include "Item.h"
+#include "Hero.h"
 #include <time.h>
 
-using std::to_string;
+using namespace std;
+
 
 class Monster : public Life {
 private:
@@ -21,6 +23,7 @@ public:
 		int TotalHP, int TotalMP, vector<int>skills, vector<std::pair<Item, int>>dpitems, int g, int exp)
 		: Life(name, attack, defense, stamina, intelligence, 0, 0, TotalHP, TotalMP, totalHP, TotalMP, skills), dropItems(dpitems), gold(g), EXP(exp) {}
 
+	void DefeatedBy(Hero& h);
 	int GiveGold();
 	int GiveEXP();
 //    void UpdateHP(int amount){ this->}; // ################################### TO DO ##########################
