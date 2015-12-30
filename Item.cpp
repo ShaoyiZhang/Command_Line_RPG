@@ -44,6 +44,7 @@ int Item::TrueVal(Life &l, int original, int symbol, int amount)
 	{
 		trueVal = original * amount;
 	}
+    return trueVal;
 }
 
 
