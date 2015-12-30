@@ -106,6 +106,12 @@ void Dungeon::DisplayFogAtLevel(int n) {
 
 using namespace std;
 
+
+
+
+
+
+
 int GetDirection()
 {
   int ret = 0;
@@ -138,6 +144,12 @@ int GetDirection()
   return ret;
 }
 
+
+
+
+
+
+
 void Dungeon::ClearAllNearBlock() {
   int currentLevel = LevelComplete;
   if (playerX > 0) {
@@ -164,10 +176,28 @@ void Dungeon::ClearAllNearBlock() {
   }
 }
 
+
+
+
+
+
+
+
+
+
+
+
+
+
 void Dungeon::Help()
 {
     cout << "How can I help you, Master";
 }
+
+
+
+
+
 
 void Dungeon::FightInstruction()
 {
@@ -180,6 +210,12 @@ void Dungeon::FightInstruction()
     //<< "If you're Pro, try action number+P to "
 }
 
+
+
+
+
+
+
 void Dungeon::Attack(Hero &h, Monster &m, int attacker)  // 0 for monster, 1 for hero
 {
     if (attacker == 1)
@@ -189,6 +225,10 @@ void Dungeon::Attack(Hero &h, Monster &m, int attacker)  // 0 for monster, 1 for
     else
         cout << "Error: Invalid Attacker!";
 }
+
+
+
+
 
 void Dungeon::MonsterTurn(Hero &h, Monster &m)
 {
@@ -310,6 +350,19 @@ void Dungeon::StartDungeon(Hero & h) {
 	  cout<<"You will be tranport to next Level. Goold luck, Hero\n";
 	  this->LevelComplete++;
 	  break;
+	}
+      }
+
+
+
+      //Check if current position is a Monster
+      if(isdigit(stages[L][playerX][playerY])){
+	int index = (int)(stages[L][playerX][playerY]-'0');
+	Monster currentMonster = monsters[L][index];
+	Fight(h,currentMonster);
+	if(h.GetHP()==0){
+	  LeaveDungeon(h);
+	  return;
 	}
       }
       //Display the 8 blocks near the hero
