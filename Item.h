@@ -4,8 +4,10 @@
 #include <iostream>
 #include <string>
 #include <vector>
+
 using std::string;
 using std::vector;
+
 
 class Hero;
 class Monster;
@@ -39,4 +41,11 @@ public:
 	string ToString() const;
 };
 
+//#include "Bag.h"
+//#include "Hero.h"
+//#include "Monster.h"
 #endif
+
+// ######### Note on vector<int> modifyAttributes
+// 0 ~ 7 Hero attributes
+// 8 ~ 15 Monster attributes

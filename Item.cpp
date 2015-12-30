@@ -1,6 +1,7 @@
 #include "Item.h"
 #include <sstream>
-
+#include "Hero.h"
+#include "Monster.h"
 
 bool Item::operator< (const Item &right) const
 {
@@ -35,7 +36,33 @@ bool Item::Use(Hero &h, Monster &m)
 {
 	if (this->GetCount() > 0)
 	{
-		return true;
+		for (int i = 0; i < this->modifyAttributes.size(); i++)
+		{
+            int amount = modifyAttributes[i];
+            switch(amount){
+				case '0':
+                    h.UpdateAtt(amount);
+                    break;
+				case '1':
+                    h.UpdateDef(amount);
+                    break;
+				case '2':
+                    break;
+				case '3':
+                    break;
+				case '4':
+                    break;
+				case '5':
+                    break;
+				case '6':
+                    break;
+				case '7':
+                    break;
+				case '8':
+                    break;
+            }
+
+		}
 	}
 	return false;
 }

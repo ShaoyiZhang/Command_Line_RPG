@@ -201,12 +201,15 @@ void Dungeon::Help()
 
 void Dungeon::FightInstruction()
 {
-    cout << "It's your turn. You can chose from: "
+    cout << "It's your turn. You can chose from: \n"
     << "1. Attack\n"
     << "2. Defense\n"       // For now, it means do nothing
     << "3. Use Skill\n"
     << "4. Use Item\n"
-    << "Pleas enter a number and press enter";
+    << "7. Enter Pro Mode\n"
+    << "8. To Do, Call For Help\n"
+    << "9. End Fight(Escape)\n"
+    << "Pleas type a number and press Enter";
     //<< "If you're Pro, try action number+P to "
 }
 
@@ -218,17 +221,25 @@ void Dungeon::FightInstruction()
 
 void Dungeon::Attack(Hero &h, Monster &m, int attacker)  // 0 for monster, 1 for hero
 {
-    if (attacker == 1)
-        m.UpdateHP(h.GetAtt()-m.GetDef());//>m.GetHP()?0:h.GetAtt()-m.GetDef());
+    if (attacker == 1) // Hero attacking
+    {   
+        int damage = h.GetAtt()-m.GetDef()/2<0?0:(h.GetAtt()-m.GetDef());
+        m.UpdateHP(-damage);
+        cout << "Monster received " << damage << " damage.\n";
+        cout << "Monster HP: " << m.GetHP() << std::endl;
+    }
     else if(attacker == 0)
-        h.UpdateHP(m.GetAtt()-h.GetDef());//>h.GetHP()?0:m.GetAtt()-h.GetDef());
+     {
+        int damage = m.GetAtt()-h.GetDef()<0?0:(m.GetAtt()-h.GetDef());
+        h.UpdateHP(-damage);
+        cout << "You received " << damage << " damage.\n";
+        cout << "Hero HP: " << h.GetHP() << std::endl;
+    }
     else
-        cout << "Error: Invalid Attacker!";
+    {    
+        cout << "Error: Invalid Attacker!\n";
+    }
 }
-
-
-
-
 
 void Dungeon::MonsterTurn(Hero &h, Monster &m)
 {
@@ -236,6 +247,7 @@ void Dungeon::MonsterTurn(Hero &h, Monster &m)
 
     // Temperory solution for testing, monster only attack
     this->Attack(h,m,0);
+    //cout << m.GetName() << "has gave you " << da;
 }
 
 void Dungeon::Fight(Hero &h, Monster &m)
@@ -247,14 +259,20 @@ void Dungeon::Fight(Hero &h, Monster &m, int pro)
 {
     if (h.GetHP() <= 0)
     {
-        cout << "You are defeated, Master. I will wait for your respawn in GG valley ...";
+        cout << "You have been defeated by " << m.GetName() << " , Master. I will wait for your respawn in GG valley ...";
         LeaveDungeon(h);
+    }
+    else if (m.GetHP() <= 0)
+    {
+        cout << "You have defeated " << m.GetName() << " .";
+        return;
     }
     else
     {
-        if (pro == 0)
+        if (pro == 7)
+            cout << "Pro Mode, Your Turn:";
+        else
             FightInstruction();
-        cout << "Pro Mode, Your Turn:";
         int instruction;
         cin >> instruction;
         
@@ -272,7 +290,7 @@ void Dungeon::Fight(Hero &h, Monster &m, int pro)
             case 3:     // Use Skill
             {
                 cout << "Which skill do you want to use?";
-                if (pro == 0)
+                if (pro != 7)
                     h.SkillsToString();
                 int skillNum = -1;
                 cin >> skillNum;
@@ -282,27 +300,31 @@ void Dungeon::Fight(Hero &h, Monster &m, int pro)
             case 4:     // Use Item
             {
                 cout << "Which item do you want to use?";
-                if (pro == 0)
+                if (pro != 7)
                     h.GetBag().ToString();
                 int itemNum = -1;
                 cin >> itemNum;
                 h.UseItem(itemNum);
                 break;
             }
-            case 0:     // Pro mode
+            case 7:     // Pro mode
             {
-                Fight(h,m,1);
+                Fight(h,m,7);
                 return;
                 break;
             }
-            case 9:     // Call for Help
+            case 8:     // Call for Help
             {
                 this->Help();
                 break;
             }
+            case 9:
+            {
+              return;
+            }
             default:
             {
-                cerr << "wrong button pressed!";
+                cerr << "wrong button pressed! Only integer value 0 ~ 9 is useful.";
                 Fight(h,m,pro);
                 return;
             }

@@ -11,7 +11,7 @@ int main() {
 	//Initaliziation Test for Life and Hero
 	vector<int>temp;
 	Life pony = Life("person", 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, temp);
-	Hero Saber = Hero("Saber", 1, 10, 3, 4, 5, 6, 7, 8, 9, 10, temp);
+	Hero Saber = Hero("Saber", 10, 10, 3, 4, 5, 6, 7, 8, 9, 10, temp);
 
 
     
@@ -35,7 +35,7 @@ int main() {
 	vector<pair<Item, int>> dpitems;
 	vector<Item> drop_from_Monster1;
 	dpitems.push_back(pair<Item, int>(Primary_HP_Potion, 200));
-	Monster monster_NO1("Imp", 3, 2, 4, 0, 12, 0, temp, dpitems, 5, 5);
+	Monster monster_NO1("Imp", 11, 2, 4, 0, 12, 0, temp, dpitems, 5, 5);
 	cout << "The name of this monter for testing is " << monster_NO1.GetName()<<endl;
 	cout << "The gold that monster_NO1 will drop is " << monster_NO1.GiveGold()<<endl;
 	drop_from_Monster1 = monster_NO1.DropOff();
