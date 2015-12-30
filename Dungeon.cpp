@@ -154,6 +154,8 @@ Monster& Dungeon::GetMonster(int l, int x, int y){
       return monstersByPosition[l][i].second;
     }
   }
+  Monster defaultM;
+  return defaultM;;
 }
 
 
@@ -405,6 +407,8 @@ void Dungeon::StartDungeon(Hero & h) {
   char command = ' ';
   //L is one less than the current level
   for (int L = 0; L < level; L++) {
+    //Reset hero position at start of each level
+    playerX = playerY =0;
     cout<<"Enter w,a,s,d to move and q to quit\n";
     while (true) {
       //Replace the current Hero location with the origin Item/Monster/Space

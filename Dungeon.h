@@ -39,6 +39,7 @@ class Dungeon {
   vector<int> minGold;
   vector<int> maxGold;
  public:
+ Dungeon() : name("Default"){}
   Dungeon(string name, int minimumLevelEnte, const vector<int> &minGold, const vector<int> &maxGold, const vector<vector<Monster>> &monsters, const vector<vector<vector<char>>> &stages, const vector<int> &goldByStages,
 	  const vector<int> &expByStages, const vector<std::pair<Item, int>> &itemsByStage);
   Dungeon(string name, int minimumLevelEnte, const vector<int> &minGold, const vector<int> &maxGold, const vector<vector<Monster>> &monsters, string s1, const vector<int> &goldByStages,
