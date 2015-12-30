@@ -35,6 +35,7 @@ Dungeon::Dungeon(string name, int minimumLevelEnter, const vector<vector<Monster
   int mIndex = 0;
   //initalize monstersByPosition
   for(int l=0; l<level; l++){
+    monstersByPosition.push_back(vector<pair<int,Monster>>());
     for(int i=0; i<10; i++){
       for(int j=0; j<10; j++){
 	tmp = stages[l][i][j];
@@ -44,7 +45,7 @@ Dungeon::Dungeon(string name, int minimumLevelEnter, const vector<vector<Monster
 	}
       }
     }
-    }
+  }
 }
 
 Dungeon::Dungeon(string name, int minimumLevelEnter, const vector<vector<Monster>> &monsters, string s1, const vector<int> &goldByStages,
@@ -90,6 +91,26 @@ Dungeon::Dungeon(string name, int minimumLevelEnter, const vector<vector<Monster
 
   for(int i =0; i<level; i++)
     this->levelClear.push_back(false);
+
+  //initalize monstersByPosition
+  char tmp = ' ';
+  int mIndex = 0;
+  for(int l=0; l<level; l++){
+    monstersByPosition.push_back(vector<pair<int,Monster>>());
+    cout<<"level = "<<l<<endl;
+    for(int i=0; i<10; i++){
+      cout<<"i = "<<i<<endl;
+      for(int j=0; j<10; j++){
+	cout<<"j = "<<j<<endl;
+	tmp = stages[l][i][j];
+	cout<<"tmp = "<<tmp<<endl;
+	if(isdigit(tmp)){
+	  mIndex = 10*i+j;
+	  monstersByPosition[l].push_back(pair<int,Monster>(mIndex,monsters[l][(int)tmp-'0']));
+	}
+      }
+    }
+  }
 }
 
 void Dungeon::DisplayFogAtLevel(int n) {
@@ -119,9 +140,17 @@ void Dungeon::DisplayFogAtLevel(int n) {
   cout << endl << endl;
 }
 
-using namespace std;
 
-
+Monster& Dungeon::GetMonster(int l, int x, int y){
+  int index = 10*x+y;
+  int size = monstersByPosition[l].size();
+  for(int i =0; i<size; i++){
+   
+    if(monstersByPosition[l][i].first == index){
+      return monstersByPosition[l][i].second;
+    }
+  }
+}
 
 
 
@@ -400,12 +429,14 @@ void Dungeon::StartDungeon(Hero & h) {
 
       //Check if current position is a Monster
       if(isdigit(stages[L][playerX][playerY])){
-	int index = (int)(stages[L][playerX][playerY]-'0');
-	Monster currentMonster = monsters[L][index];
+	Monster& currentMonster = GetMonster(L,playerX,playerY);
 	Fight(h,currentMonster);
 	if(h.GetHP()==0){
 	  LeaveDungeon(h);
 	  return;
+	}
+	if (currentMonster.GetHP()<=0){
+	  stages[L][playerX][playerY] = ' ';
 	}
       }
       //Display the 8 blocks near the hero
