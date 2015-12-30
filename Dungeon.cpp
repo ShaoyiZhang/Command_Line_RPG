@@ -1,7 +1,7 @@
 #include "Dungeon.h"
 
 
-Dungeon::Dungeon(string name, int minimumLevelEnter, const vector<vector<Monster>> &monsters, const vector<vector<vector<char>>> &stages, const vector<int> &goldByStages,
+Dungeon::Dungeon(string name, int minimumLevelEnter, const vector<int> &minGold, const vector<int> &maxGold,const vector<vector<Monster>> &monsters, const vector<vector<vector<char>>> &stages, const vector<int> &goldByStages,
 		 const vector<int> &expByStages, const vector<std::pair<Item, int>> &itemsByStage) {
   this->name=name;
   this->minimumLevelEnter = minimumLevelEnter;
@@ -11,7 +11,9 @@ Dungeon::Dungeon(string name, int minimumLevelEnter, const vector<vector<Monster
   this->goldByStages = goldByStages;
   this->expByStages = expByStages;
   this->itemsByStage = itemsByStage;
-  level = stages.size();
+  this->minGold = minGold;
+  this->maxGold = maxGold;
+  this->level = stages.size();
 
   //initalize the Fog_Of_Wall with vetcotr of 10x10 '?'
   vector<char>temp;
@@ -48,7 +50,7 @@ Dungeon::Dungeon(string name, int minimumLevelEnter, const vector<vector<Monster
   }
 }
 
-Dungeon::Dungeon(string name, int minimumLevelEnter, const vector<vector<Monster>> &monsters, string s1, const vector<int> &goldByStages,
+Dungeon::Dungeon(string name, int minimumLevelEnter, const vector<int> &minGold, const vector<int> &maxGold, const vector<vector<Monster>> &monsters, string s1, const vector<int> &goldByStages,
 		 const vector<int> &expByStages, const vector<std::pair<Item, int>> &itemsByStage) {
   this->name=name;
   this->minimumLevelEnter = minimumLevelEnter;
@@ -57,7 +59,9 @@ Dungeon::Dungeon(string name, int minimumLevelEnter, const vector<vector<Monster
   this->expByStages = expByStages;
   this->goldByStages = goldByStages;
   this->itemsByStage = itemsByStage;
-  level = s1.size() / 100;
+  this->minGold = minGold;
+  this->maxGold = maxGold;
+  this->level = s1.size() / 100;
   int index = 0;
   if (s1.size()%100 != 0) {
     cerr << "size of the string not match" << endl;
@@ -306,7 +310,6 @@ void Dungeon::Fight(Hero &h, Monster &m, int pro)
     if (h.GetHP() <= 0)
     {
         cout << "You have been defeated by " << m.GetName() << " , Master. I will wait for your respawn in GG valley ...\n\n";
-        LeaveDungeon(h);
     }
     else if (m.GetHP() <= 0)
     {
@@ -384,7 +387,14 @@ void Dungeon::Fight(Hero &h, Monster &m, int pro)
     }
 }
 
-
+void Dungeon::PickUpGoldAtLevel(Hero& h, int l){
+  srand(time(NULL));
+  int temp = rand()%(maxGold[l-1]-minGold[l-1]);
+  temp = temp+minGold[l-1];
+  cout<<"You just pick up "<<temp<<" coins!\n";
+  h.GainCoins(temp);
+  return;
+}
 
 
 //increment levelComplete if complete 
@@ -393,6 +403,7 @@ void Dungeon::StartDungeon(Hero & h) {
   //I represents Item, C reprents Coins, E reprents exit
   int directiopn = 0;
   char command = ' ';
+  //L is one less than the current level
   for (int L = 0; L < level; L++) {
     cout<<"Enter w,a,s,d to move and q to quit\n";
     while (true) {
@@ -428,7 +439,7 @@ void Dungeon::StartDungeon(Hero & h) {
 
 
       //Check if current position is a Monster
-      if(isdigit(stages[L][playerX][playerY])){
+      else if(isdigit(stages[L][playerX][playerY])){
 	Monster& currentMonster = GetMonster(L,playerX,playerY);
 	Fight(h,currentMonster);
 	if(h.GetHP()==0){
@@ -439,6 +450,16 @@ void Dungeon::StartDungeon(Hero & h) {
 	  stages[L][playerX][playerY] = ' ';
 	}
       }
+
+
+      //check if current position is coins that can be pick Up
+      else if(stages[L][playerX][playerY]=='C'){
+	PickUpGoldAtLevel(h,L+1);
+	stages[L][playerX][playerY] = ' ';
+      }
+
+
+
       //Display the 8 blocks near the hero
       ClearAllNearBlock();
     }

@@ -35,11 +35,13 @@ class Dungeon {
   vector<int>expByStages;
   //int represent percentage/10
   vector<std::pair<Item, int>> itemsByStage;
-
+  //minimum gold and maximum gold in dungeon that can be picked up at each level
+  vector<int> minGold;
+  vector<int> maxGold;
  public:
-  Dungeon(string name, int minimumLevelEnte, const vector<vector<Monster>> &monsters, const vector<vector<vector<char>>> &stages, const vector<int> &goldByStages,
+  Dungeon(string name, int minimumLevelEnte, const vector<int> &minGold, const vector<int> &maxGold, const vector<vector<Monster>> &monsters, const vector<vector<vector<char>>> &stages, const vector<int> &goldByStages,
 	  const vector<int> &expByStages, const vector<std::pair<Item, int>> &itemsByStage);
-  Dungeon(string name, int minimumLevelEnte, const vector<vector<Monster>> &monsters, string s1, const vector<int> &goldByStages,
+  Dungeon(string name, int minimumLevelEnte, const vector<int> &minGold, const vector<int> &maxGold, const vector<vector<Monster>> &monsters, string s1, const vector<int> &goldByStages,
 	  const vector<int> &expByStages, const vector<std::pair<Item, int>> &itemsByStage);
   void StartDungeon(Hero & h) ;
   void LeaveDungeon(Hero& h);
@@ -54,6 +56,7 @@ class Dungeon {
   void Fight(Hero &h, Monster &m, int pro);
   //Get Monster By combination of Xindex and YIndex from monstersByPosition
   Monster& GetMonster(int l, int x, int y);
+  void PickUpGoldAtLevel(Hero &h, int l);
 
 
 

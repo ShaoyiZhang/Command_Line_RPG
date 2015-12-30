@@ -65,8 +65,13 @@ int main() {
 	expByStages.push_back(20);
 	vector<std::pair<Item, int>> itemsByStage;
 	itemsByStage.push_back(pair<Item,int>(Primary_HP_Potion,500));
-	Dungeon d1("Dark Forest",1,m1, s1, goldByStages, expByStages, itemsByStage);
-;
+
+	vector<int>minGold;
+	vector<int>maxGold;
+	minGold.push_back(5);
+	maxGold.push_back(20);
+	
+	Dungeon d1("Dark Forest",1,minGold, maxGold, m1, s1, goldByStages, expByStages, itemsByStage);
 	cout << endl;
 	cout<<"Saber's attack is "<<Saber.GetAtt()<<endl;
 	d1.StartDungeon(Saber);

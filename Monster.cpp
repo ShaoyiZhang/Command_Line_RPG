@@ -38,16 +38,17 @@ void Monster::DefeatedBy(Hero& h){
   int coins = GiveGold();
   h.GainCoins(coins);
   h.GainEXP(GiveEXP());
-  cout<<"You defeated "<<GetName()<<endl;
   cout<<"Gold gained: "<<coins<<endl;
   cout<<"EXP gained: "<<EXP<<endl;
   vector<Item>temp = DropOff();
   if(temp.size()!=0){
     cout<<"Items:\n";
     for(int i=0; i<temp.size();i++){
+      h.GainItem(temp[i]);
       cout<<i+1<<". "<<temp[i].GetName()<<endl;
     }
   }
+  
   
 }
 
