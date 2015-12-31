@@ -79,8 +79,9 @@ bool Bag::PutInBag(Item &newItem)
         index = this->FindIndex(newItem);
         if (index == -1)
         {
-            this->bag[index] = newItem;
+            this->bag[used-1] = newItem;
             cout << "I have put " << newItem.GetName() << " into your bag, Master." << endl;
+            used++;
         }
         else
         {
@@ -111,6 +112,7 @@ bool Bag::RemoveFromBag(int index, int amount)
         {
             bag[index].IncrCount(-amount);
         }
+        used--;
         return true;
     }
 }
