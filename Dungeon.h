@@ -40,9 +40,9 @@ class Dungeon {
   vector<int> maxGold;
  public:
  Dungeon() : name("Default"){}
-  Dungeon(string name, int minimumLevelEnte, const vector<int> &minGold, const vector<int> &maxGold, const vector<vector<Monster>> &monsters, const vector<vector<vector<char>>> &stages, const vector<int> &goldByStages,
+  Dungeon(string name, int minimumLevelEnter, const vector<int> &minGold, const vector<int> &maxGold, const vector<vector<Monster>> &monsters, const vector<vector<vector<char>>> &stages, const vector<int> &goldByStages,
 	  const vector<int> &expByStages, const vector<std::pair<Item, int>> &itemsByStage);
-  Dungeon(string name, int minimumLevelEnte, const vector<int> &minGold, const vector<int> &maxGold, const vector<vector<Monster>> &monsters, string s1, const vector<int> &goldByStages,
+  Dungeon(string name, int minimumLevelEnter, const vector<int> &minGold, const vector<int> &maxGold, const vector<vector<Monster>> &monsters, string s1, const vector<int> &goldByStages,
 	  const vector<int> &expByStages, const vector<std::pair<Item, int>> &itemsByStage);
   void StartDungeon(Hero & h) ;
   void LeaveDungeon(Hero& h);
@@ -58,8 +58,8 @@ class Dungeon {
   //Get Monster By combination of Xindex and YIndex from monstersByPosition
   Monster& GetMonster(int l, int x, int y);
   void PickUpGoldAtLevel(Hero &h, int l);
-
-
+  string GetName() {return name;}
+  int GetMinLevel() {return minimumLevelEnter;}
 
 };
 

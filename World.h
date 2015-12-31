@@ -3,6 +3,7 @@
 #include "Hero.h"
 #include "Dungeon.h"
 #include "NPC.h"
+#include<iostream>
 #include<istream>
 #include<fstream>
 using namespace std;
@@ -12,13 +13,21 @@ using namespace std;
 class World {
 private:
 	Hero hero;
-	Dungeon dungeons;
-	vector<NPC> npcs;
+	vector<Dungeon> dungeons;
+	int villageX = 0;
+	int villageY=0;
+	vector<vector<char>>village;
+	vector<vector<char> >current;
+	//vector<NPC> npcs;
 public:
-	World(Hero hero, Dungeon dungeons, vector<NPC>npcs);
+	World();
+	World(const Hero &hero, const vector<Dungeon> &dungeons);
+	void StartGame();
+	void DisplayVillage();
 	void Save(Hero& h);
 	void Load();
-    
+	void DisplayDungeons();
+	void EnterDungeon();
 
 	
 };

@@ -407,7 +407,10 @@ void Dungeon::StartDungeon(Hero & h) {
     playerX = playerY =0;
     cout<<"Enter w,a,s,d to move and q to quit\n";
     while (true) {
+      //Display the 8 blocks near the hero
+      ClearAllNearBlock();
       //Replace the current Hero location with the origin Item/Monster/Space
+      cout<<"HP: "<<h.GetHP()<<"/"<<h.GetTotalHP()<<endl;
       DisplayFogAtLevel(L + 1);
       Fog_of_War[L][playerX][playerY] = stages[L][playerX][playerY];
       directiopn = GetDirection();
@@ -419,7 +422,7 @@ void Dungeon::StartDungeon(Hero & h) {
 	playerY += 1;
       else if (directiopn == 4 && playerX < 9)
 	playerX += 1;
-      else{
+      else if (directiopn == 5){
 	LeaveDungeon(h);
 	return;
       }
@@ -460,8 +463,6 @@ void Dungeon::StartDungeon(Hero & h) {
 
 
 
-      //Display the 8 blocks near the hero
-      ClearAllNearBlock();
     }
   }
   cout<<"\nWow, you have complete all level of " <<this->name<<"\n";

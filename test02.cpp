@@ -1,6 +1,7 @@
 #include "Hero.h"
 #include "Monster.h"
 #include "Dungeon.h"
+#include "World.h"
 #include <iostream>
 using namespace std;
 
@@ -11,7 +12,7 @@ int main() {
 	//Initaliziation Test for Life and Hero
 	vector<int>temp;
 	Life pony = Life("person", 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, temp);
-	Hero Saber = Hero("Saber", 10, 10, 3, 4, 5, 6, 30, 8, 31, 10, temp);
+	Hero Saber = Hero("Saber", 20, 10, 3, 4, 5, 6, 30, 8, 31, 10, temp);
 
 
     
@@ -103,7 +104,15 @@ int main() {
 	
 	Dungeon d1("Dark Forest",1,minGold, maxGold, m1, s1, goldByStages, expByStages, itemsByStage);
 	cout << endl;
-	d1.StartDungeon(Saber);
-	
+	//d1.StartDungeon(Saber); 
+
+
+	//initalize world
+	//World(const Hero &hero, const Dungeon &dungeons);
+	vector<Dungeon>dungeons;
+	dungeons.push_back(d1);
+	World w1(Saber,dungeons);
+	w1.DisplayVillage();
+	w1.StartGame();
 
 }

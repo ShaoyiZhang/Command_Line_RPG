@@ -1,28 +1,193 @@
 #include "World.h"
+/*
+class World {
+private:
+	Hero hero;
+	vector<Dungeon> dungeons;
+	int villageX = 0;
+	int villageY=0;
+	vector<vector<char>village;
+	//vector<NPC> npcs;
+public:
+	World(Hero hero, Dungeon dungeons);
+	void StartGame();
+	void DisplayVillage();
+	void Save(Hero& h);
+	void Load();
+    
 
-World::World(Hero hero, Dungeon dungeons, vector<NPC>npcs) {
+	
+	};*/
+
+World::World(){
+  
+}
+
+World::World(const Hero& hero, const vector<Dungeon>& dungeons) {
     this->hero = hero;
     this->dungeons = dungeons;
-    this->npcs = npcs;
+    string s(100,' ');
+    s[0]  = 'S';//starting point
+    s[5]  = 'R';//where hero would be when it is back from Dungeon
+    s[49] = 'A';//Save and Exit
+    s[43] = 'M';//A Merchant that can sell and buy Item
+    s[56] = 'W';//A black smith that can upgrade your weapon and equiments
+    s[95] = 'E'; //Entrance to the Dungeon
+    int index =0;
+    vector<char>c;
+    for(int i =0; i<10; i++)
+      this->village.push_back(c);
+    for(int i =0; i<10; i++){
+      for(int j=0; j<10; j++){
+	village[i].push_back(s[index]);
+	index++;
+      }
+    }
+    current = village;
 }
 
-/*
-void World::FightInstruction()
-{
-    cout << "It's your turn. You can chose from: "
-    << "1. Attack\n"
-    << "2. Defense\n"       // For now, it means do nothing
-    << "3. Use Skill\n"
-    << "4. Use Item\n"
-    << "Pleas enter a number and press enter";
-    //<< "If you're Pro, try action number+P to "
+
+void World::DisplayVillage(){
+  cout<<endl;
+  for(int i =0; i<43; i++)
+    cout<<"-";
+  cout<<endl;
+
+
+  for(int i =0; i<10; i++){
+    cout<<"| ";
+    for(int j=0; j<10; j++){
+      cout<<current[i][j]<<" | ";
+    }
+    cout<<endl;
+    for(int k=0; k<43; k++)
+      cout<<"-";
+    cout<<endl;
+  }
 }
 
-void World::Help()
+
+int GetVillageDire()
 {
-    cout << "How can I help you, Master";
+  int ret = 0;
+
+  do
+    {
+      char c = ' ';
+      c = cin.get();
+      switch (c)
+	{
+	case 'w':
+	  ret = 2; // top
+	  break;
+	case 'a':
+	  ret = 1; // left 
+	  break;
+	case 'd':
+	  ret = 3; // right
+	  break;
+	case 's':
+	  ret = 4; // down
+	  break;
+	default:
+	  break;
+	}
+    } while (ret == 0);
+
+  return ret;
 }
-*/
+
+
+void World::DisplayDungeons(){
+  int size = this->dungeons.size();
+  for(int i =0; i<size; i++){
+    cout<<i<<". "<<dungeons[i].GetName()<<"      Minimum Level Enter: "<<dungeons[i].GetMinLevel() <<endl;
+  }
+}
+void World::EnterDungeon(){
+  int size = this->dungeons.size();
+  DisplayDungeons();
+  cout<<"Enter the index of the Dungeon you want to enter\n";
+  char index = ' ';
+  cin>>index;
+  while((int)(index-'0')<0||(int)(index-'0')>=size){
+    if(index == 'q'||index == 'Q')
+      return;
+    cout<<"Index is invalid, please enter again:\nEnter Q to exit\n";
+    cin>>index;
+  }
+  Dungeon copy = dungeons[(int)(index-'0')];
+  copy.StartDungeon(hero);
+}
+
+
+
+void World::StartGame(){
+  char command = ' ';
+  int direction =0;
+  while(true){
+    current[villageX][villageY] = 'H';
+    DisplayVillage();
+    direction = GetVillageDire();
+    current[villageX][villageY] = village[villageX][villageY];
+    if (direction == 1 && villageY > 0)
+      villageY-= 1;
+    else if (direction == 2 && villageX > 0)
+      villageX -= 1;
+    else if (direction == 3 && villageY < 9)
+      villageY += 1;
+    else if (direction == 4 && villageX < 9)
+      villageX += 1;
+    //check if current position is a Entrance
+    if(village[villageX][villageY]=='E'){
+      EnterDungeon();
+      villageX =0;
+      villageY = 5;
+      cout<<"Welcome home, hero!\n";
+    }
+    else if(village[villageX][villageY]=='A'){
+      cout<<"Do you want to save the data? Enter Y to confirm\n";
+      cin>>command;
+      if(command=='y'||command == 'Y'){
+	//To Do:
+	//Ask which data player want to save 
+	cout<<"Do you want to exit the game? Enter Y to confirm\n";
+	cin>>command;
+	if(command=='y'||command == 'Y'){
+	  cout<<"GoodBye\n";
+	  break;
+	}
+      }
+    }
+  }
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 string GetNextWord(string &contents, int &index) {
     int size = contents.size();
@@ -173,105 +338,4 @@ void World::Save(Hero& h) {
     myfile.close();
 
 }
-/*
-void World::Attack(Hero &h, Monster &m, int attacker)  // 0 for monster, 1 for hero
-{
-    if (attacker == 1)
-        m.UpdateHP(h.GetAtt()-m.GetDef());//>m.GetHP()?0:h.GetAtt()-m.GetDef());
-    elif(attacker == 0)
-        h.UpdateHP(m.GetAtt()-h.GetDef());//>h.GetHP()?0:m.GetAtt()-h.GetDef());
-    else
-        cout << "Error: Invalid Attacker!";
-}
-
-void World::MonsterTurn(Hero &h, Monster &m)
-{
-    //srand(time(NULL));
-
-    // Temperory solution for testing, monster only attack
-    this->Attack(h,m,0)
-}
-
-void World::Fight(Hero &h, Monster &m)
-{
-    Fight(h,m,0);
-}
-
-void World::Fight(Hero &h, Monster &m, int pro)
-{
-    if (h.GetHP() <= 0)
-    {
-        cout << "You are defeated, Master. I will wait for your respawn in GG valley ...";
-        this->dungeons.LeaveDungeon(h);
-    }
-    else
-    {
-        if (pro == 0)
-            FightInstruction();
-        cout << "Pro Mode, Your Turn:";
-        int instruction;
-        cin >> instruction;
-        
-        switch (instruction)
-        {
-            case 1:     // Attack
-            {
-                Attack(h,m,1);
-                break;
-            }
-            case 2:     // Defense
-            {
-                break;
-            }
-            case 3:     // Use Skill
-            {
-                cout << "Which skill do you want to use?";
-                if (pro == 0)
-                    h.SkillsToString();
-                int skillNum = -1;
-                cin >> skillNum;
-                h.UseSkill(skillNum);
-                break;
-            }
-            case 4:     // Use Item
-            {
-                cout << "Which item do you want to use?";
-                if (pro == 0)
-                    h.GetBag().ToString();
-                int itemNum = -1;
-                cin >> itemNum;
-                h.UseItem(itemNum);
-                break;
-            }
-            case 0:     // Pro mode
-            {
-                Fight(h,m,1);
-                return;
-                break;
-            }
-            case 9:     // Call for Help
-            {
-                this->Help();
-                break;
-            }
-            defalt:
-            {
-                cerr << "wrong button pressed!";
-                Fight(h,m,pro);
-                return;
-            }
-        }
-        MonsterTurn(h,m);
-        Fight(h,m,pro);
-    }
-}
-*/
-
-
-
-
-
-
-
-
 
