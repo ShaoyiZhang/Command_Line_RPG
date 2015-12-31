@@ -12,7 +12,7 @@ all: ${BINARIES}
 test01: test01.o Item.o Bag.o tddFuncs.o
 	${CXX} $^ -o $@
 
-test02: test02.o Life.o Hero.o Item.o Bag.o Equipment.o Skill.o NPC.o Monster.o Dungeon.o
+test02: test02.o Life.o Hero.o Item.o Bag.o Equipment.o Skill.o NPC.o Monster.o Dungeon.o World.o
 	${CXX} $^ -o $@
 
 tests:${BINARIES}
