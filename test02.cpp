@@ -35,7 +35,7 @@ int main() {
 	//initalization test for Monster
 	vector<pair<Item, int>> dpitems;
 	vector<Item> drop_from_Monster1;
-	dpitems.push_back(pair<Item, int>(Primary_HP_Potion, 200));
+	dpitems.push_back(pair<Item, int>(Primary_HP_Potion, 1000));
 	Monster monster_NO1("Imp", 11, 2, 4, 0, 12, 0, temp, dpitems, 5, 5);
 	cout << "The name of this monter for testing is " << monster_NO1.GetName()<<endl;
 	cout << "The gold that monster_NO1 will drop is " << monster_NO1.GiveGold()<<endl;

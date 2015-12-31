@@ -24,7 +24,7 @@ Bag::Bag(map<Item, int> oneBag)
 */
 Bag::Bag()
 {
-    
+	used = 0;
 }
 
 size_t Bag::GetUsed()
@@ -53,12 +53,12 @@ bool Bag::UseItem(int itemNum, Hero &h, Monster &m)
         return false; 
 }
 
-int Bag::FindIndex(Item &item)
+int Bag::FindIndex(Item item)
 {
     int index = 0;
-    for (size_t i = 0; (i < used)&&(bag[i].GetName() != item.GetName()); i++)
+    for (int i = 0; (i < used)&&(bag[i].GetName() != item.GetName()&&(bag[i].GetName()!="...s")); i++)
         {
-            index++;
+            index = i;
         }
 
     if (index < used)
@@ -79,7 +79,9 @@ bool Bag::PutInBag(Item &newItem)
         index = this->FindIndex(newItem);
         if (index == -1)
         {
-            this->bag[used-1] = newItem;
+			if (used <= 0)
+				index = 0;
+            this->bag[index] = newItem;
             cout << "I have put " << newItem.GetName() << " into your bag, Master." << endl;
             used++;
         }

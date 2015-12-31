@@ -25,7 +25,7 @@ public:
 
 	size_t GetUsed();
 	bool IsFull();
-	int FindIndex(Item &item); // -1 for not Contain , other value means index
+	int FindIndex(Item item); // -1 for not Contain , other value means index
 
 	bool UseItem(int itemNum){ return false; };
 	bool UseItem(int itemNum, Hero &h, Monster &m);

@@ -26,7 +26,7 @@ private:
 	vpi modifyAttributes; // vector<pair<int,int>>
 
 	int count;
-	int uniqueVal;
+	//int uniqueVal;
 	
 public:
 	Item():name("..."), description("..."), buyInPrice(0), sellOutPrice(0), count(0){};
