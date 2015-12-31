@@ -18,10 +18,10 @@ private:
 	int villageY=0;
 	vector<vector<char>>village;
 	vector<vector<char> >current;
-	//vector<NPC> npcs;
+	vector<NPC> npcs;
 public:
 	World();
-	World(const Hero &hero, const vector<Dungeon> &dungeons);
+	World(const Hero &hero, const vector<Dungeon> &dungeons, vector<NPC>npcs);
 	void StartGame();
 	void DisplayVillage();
 	void Save(Hero& h);

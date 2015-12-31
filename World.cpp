@@ -23,9 +23,10 @@ World::World(){
   
 }
 
-World::World(const Hero& hero, const vector<Dungeon>& dungeons) {
+World::World(const Hero& hero, const vector<Dungeon>& dungeons,  vector<NPC>npcs) {
     this->hero = hero;
     this->dungeons = dungeons;
+    this->npcs = npcs;
     string s(100,' ');
     s[0]  = 'S';//starting point
     s[5]  = 'R';//where hero would be when it is back from Dungeon
@@ -159,6 +160,37 @@ void World::StartGame(){
 	}
       }
     }
+
+    //check if current position is a Merchant
+    else if(village[villageX][villageY]=='M'){
+      cout<<"What's my name? I am not going to tell you that. Do you want to do the business or not?\n\n";
+    again:
+      cout<<"\nYou have following options\n";
+      cout<<"1. Talk with this mercahnt\n";
+      cout<<"2. Buy Items from him\n";
+      cout<<"3. Sell Items to him\n";
+      cout<<"q. Exit\n";
+      cout<<"What are you going to do? Enter the Index: \n";
+      cin>>command;
+      while(command!='1'&&command!='2'&&command!='3'){
+	if(command=='q'||command=='Q')
+	  break;
+	cout<<"Invalid command. Please enter the index again\n";
+	cout<<"Enter Q to quit conversion\n";
+      }
+      cout<<endl;
+      if(command=='1')
+	npcs[0].Talking(hero);
+      else if(command=='2')
+	npcs[0].Buy(hero);
+      else if(command == '3')
+	npcs[0].Sell(hero);
+      if(command!='q'&&command!='Q')
+	goto again;
+      
+    }
+
+    
   }
 }
 

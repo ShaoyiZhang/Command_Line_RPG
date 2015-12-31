@@ -26,6 +26,34 @@ int main() {
 	cout<<"Buy in price for hp potion is" << Primary_HP_Potion.GetBuyPrice() << endl;
 	cout << "Sell out price for Hp potion is " << Primary_HP_Potion.GetSellPrice() << endl;
 	cout << "Description is " << Primary_HP_Potion.GetDescription() << endl<<endl;
+	
+	Item Advance_HP_Potion(" Advance_HP_Potion", "restore 20 HP", 10,4,1);
+
+
+	//Initilization of NPC 
+	// NPC(vector<Item> itemForSale, vector<Item> specialItem, 
+	//vector<string>talkings, string specialMessage);
+	vector<string>talkings;
+	talkings.push_back("It is a good day today\n");
+	talkings.push_back("I like here. Do you?\n");
+	talkings.push_back("God, it is so borning.\n");
+	talkings.push_back("What are you looking at?\n");
+	talkings.push_back("I will go back to my village once I get enoguh money\n");
+	
+	vector<Item>npcItems;
+	npcItems.push_back(Primary_HP_Potion);
+
+	vector<Item>specialNPCItem;
+	specialNPCItem.push_back(Advance_HP_Potion);
+	
+	string specialMessage = "Hmm.. You are lucky today, I have something special for you\n";
+
+	NPC merchant(npcItems,specialNPCItem,talkings,specialMessage);
+
+	merchant.Talking(Saber);
+	merchant.Talking(Saber);
+	merchant.Talking(Saber);
+	
 
 
 
@@ -111,7 +139,11 @@ int main() {
 	//World(const Hero &hero, const Dungeon &dungeons);
 	vector<Dungeon>dungeons;
 	dungeons.push_back(d1);
-	World w1(Saber,dungeons);
+
+	vector<NPC>npcs;
+	npcs.push_back(merchant);
+	
+	World w1(Saber,dungeons,npcs);
 	w1.DisplayVillage();
 	w1.StartGame();
 

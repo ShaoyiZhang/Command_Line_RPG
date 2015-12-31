@@ -21,6 +21,7 @@ NPC::NPC(vector<Item> itemForSale, vector<Item> specialItem, vector<string>talki
 	this->specialItem = specialItem;
 	this->talkings = talkings;
 	this->specialMessage = specialMessage;
+	srand(time(NULL));
 }
 
 void ShowItemsByIndex(vector<Item> items) {
@@ -35,11 +36,18 @@ void ShowItemsByIndex(vector<Item> items) {
 //1% chance of trigger the hidden message and get to buy the special Item
 void NPC::Talking(Hero& h) {
 	int size = talkings.size();
-	srand(time(NULL));
+	if(size==0){
+	  cout<<"Go away, I don't want to talk with you.\n";
+	}
 	if (rand() % 100 == 0) {
 		cout << specialMessage << endl;
 		TradeSpecialItem(h);
 	}
+	else 
+	  {
+	    int temp = rand()%size;
+	    cout<<talkings[temp]<<endl;
+	  }
 }
 
 void NPC::Buy(Hero & h) {
