@@ -31,8 +31,8 @@ public:
     Life(){};
     // 11 attirbutes in total
     Life(string name, int attack, int defense, int stamina, int intelligence,
-         int stun, int weak, int HP, int MP, int totalHP, int totalMP, vector<int> skills);
-    Life(string name, int attack, int defense, int stamina, int intelligence, int totalHP, int totalMP, vector<int> skills);
+         int stun, int weak,int HP, int MP,vector<int> skills);
+    Life(string name, int attack, int defense, int stamina, int intelligence, vector<int> skills);
     string GetName(){ return this->name; };
     int GetAtt(){ return this->attack; };
     int GetDef(){ return this->defense; };

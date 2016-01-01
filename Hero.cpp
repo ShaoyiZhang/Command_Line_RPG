@@ -140,7 +140,10 @@ void Hero::UpdateLevel()   // might call CheckLevelUp()
       cout<<"You have "<<points<<" points left\n";
     }
     ReportStatus();
+    this->totalHP = stamina*4;
+    this->totalMP = intelligence*4;
     this->HP = this->totalHP;
+    this->MP = this->totalMP;
   }
 }
 

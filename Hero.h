@@ -28,8 +28,8 @@ private:
 public:
     Hero(){};
  Hero(string name, int level, int attack, int defense, int stamina, int intelligence,
-        int stun, int weak, int HP, int MP, int totalHP, int totalMP, vector<int> skills) :
-    Life(name, attack, defense, stamina, intelligence, stun, weak, HP, MP, totalHP, totalMP, skills) {this->level = level;  maxEXP = LevelToUpgrade[level];}
+        int stun, int weak, int HP, int MP,  vector<int> skills) :
+    Life(name, attack, defense, stamina, intelligence, stun, weak, HP, MP, skills) {this->level = level;  maxEXP = LevelToUpgrade[level];}
     Hero(string name);
     bool CheckLevelUp();
     bool CheckOwnership(Item& item);
