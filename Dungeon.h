@@ -62,6 +62,7 @@ class Dungeon {
   string GetName() {return name;}
   int GetMinLevel() {return minimumLevelEnter;}
   int GetDirection();
+  void Reset();
 };
 
 

@@ -123,6 +123,7 @@ void World::EnterDungeon(){
     goto again;
   }
   Dungeon copy = dungeons[(int)(index-'0')];
+  copy.Reset();
   copy.StartDungeon(hero);
 }
 

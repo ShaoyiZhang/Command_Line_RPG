@@ -32,22 +32,6 @@ Dungeon::Dungeon(string name, int minimumLevelEnter, const vector<int> &minGold,
 
   for(int i =0; i<level; i++)
     this->levelClear.push_back(false);
-  
-  char tmp = ' ';
-  int mIndex = 0;
-  //initalize monstersByPosition
-  for(int l=0; l<level; l++){
-    monstersByPosition.push_back(vector<pair<int,Monster>>());
-    for(int i=0; i<10; i++){
-      for(int j=0; j<10; j++){
-	tmp = stages[l][i][j];
-	if(isdigit(tmp)){
-	  mIndex = 10*i+j;
-	  monstersByPosition[l].push_back(pair<int,Monster>(mIndex,monsters[l][(int)tmp-'0']));
-	}
-      }
-    }
-  }
 }
 
 Dungeon::Dungeon(string name, int minimumLevelEnter, const vector<int> &minGold, const vector<int> &maxGold, const vector<vector<Monster>> &monsters, string s1, const vector<int> &goldByStages,
@@ -96,21 +80,6 @@ Dungeon::Dungeon(string name, int minimumLevelEnter, const vector<int> &minGold,
   for(int i =0; i<level; i++)
     this->levelClear.push_back(false);
 
-  //initalize monstersByPosition
-  char tmp = ' ';
-  int mIndex = 0;
-  for(int l=0; l<level; l++){
-    monstersByPosition.push_back(vector<pair<int,Monster>>());
-    for(int i=0; i<10; i++){
-      for(int j=0; j<10; j++){
-	tmp = stages[l][i][j];
-	if(isdigit(tmp)){
-	  mIndex = 10*i+j;
-	  monstersByPosition[l].push_back(pair<int,Monster>(mIndex,monsters[l][(int)tmp-'0']));
-	}
-      }
-    }
-  }
 }
 
 void Dungeon::DisplayFogAtLevel(int n) {
@@ -550,4 +519,48 @@ void Dungeon::LeaveDungeon(Hero& h) {
   }
 
 
+}
+
+
+
+void Dungeon::Reset(){
+  srand(time(NULL));
+  vector<char>temp;
+  int toSwitch = 0;
+  char tp = ' ';
+  for(int l=0; l<level; l++){
+    for(int i =0; i<10; i++){
+      toSwitch = rand()%10;
+      temp = stages[l][toSwitch];
+      stages[l][toSwitch] = stages[l][i];
+      stages[l][i] = temp;
+    }
+    for(int i =0; i<10; i++){
+      toSwitch = rand()%10;
+      for(int j=0; j<10; j++){
+	tp = stages[l][toSwitch][j];
+	stages[l][toSwitch][j] = stages[l][i][j];
+	stages[l][i][j] = tp;
+      }
+    
+    }
+  }
+
+  //initalize monstersByPosition
+  
+  char tmp = ' ';
+  int mIndex = 0;
+  for(int l=0; l<level; l++){
+    monstersByPosition.push_back(vector<pair<int,Monster>>());
+    for(int i=0; i<10; i++){
+      for(int j=0; j<10; j++){
+	tmp = stages[l][i][j];
+	if(isdigit(tmp)){
+	  mIndex = 10*i+j;
+	  monstersByPosition[l].push_back(pair<int,Monster>(mIndex,monsters[l][(int)tmp-'0']));
+	}
+      }
+    }
+  }
+  return;
 }

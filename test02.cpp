@@ -111,7 +111,7 @@ int main() {
 	m1.push_back(monsters);
 	vector<vector<vector<char>>> stages;
 
-        string s1 = "S      000  0 C 1 000000       T 1  0  000   C 000 0  T000        E                                 S          0   C 0    0 1    0           0  1  1              0     C        0   C 1 C             E";
+        string s1 = "       000  0 C 1 000000       T 1  0  000   C 000 0  T000        E                                            0   C 0    0 1    0           0  1  1              0     C        0   C 1 C             E";
 	cout<<"Length of s1 is "<<s1.size()<<endl;
 	vector<int>goldByStages;
 	goldByStages.push_back(20);
