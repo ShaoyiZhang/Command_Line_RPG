@@ -110,12 +110,17 @@ void World::EnterDungeon(){
   DisplayDungeons();
   cout<<"Enter the index of the Dungeon you want to enter\n";
   char index = ' ';
+ again:
   cin>>index;
   while((int)(index-'0')<0||(int)(index-'0')>=size){
     if(index == 'q'||index == 'Q')
       return;
     cout<<"Index is invalid, please enter again:\nEnter Q to exit\n";
     cin>>index;
+  }
+  if(dungeons[(int)(index-'0')].GetMinLevel()>hero.GetLevel()){
+    cout<<"You did not meet the minimum level. Try another Dungeon please\n";
+    goto again;
   }
   Dungeon copy = dungeons[(int)(index-'0')];
   copy.StartDungeon(hero);

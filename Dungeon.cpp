@@ -158,7 +158,7 @@ Monster& Dungeon::GetMonster(int l, int x, int y){
 
 
 
-int GetDirection()
+int Dungeon::GetDirection()
 {
   int ret = 0;
 
@@ -181,7 +181,11 @@ int GetDirection()
 	  ret = 4; // down
 	  break;
 	case 'q':
-	  ret = 5;
+	  ret = 5;//return
+	  break;
+	case 'e':
+	  autoFight = false;
+	  cout<<"Auto fight has been turnned off\n";
 	default:
 	  break;
 	}
@@ -252,6 +256,7 @@ void Dungeon::FightInstruction()
     << "2. Defense\n"       // For now, it means do nothing
     << "3. Use Skill\n"
     << "4. Use Item\n"
+    << "5. Turn on Auto fight mode (Enter e to turn off)\n"
     << "7. Enter Pro Mode\n"
     << "8. To Do, Call For Help\n"
     << "9. End Fight(Escape)\n"
@@ -322,7 +327,16 @@ void Dungeon::Fight(Hero &h, Monster &m, int pro)
         else
             FightInstruction();
         char instruction=0;
+	
+	if(autoFight)
+	  instruction = '1';
+	else
 	cin>>instruction;
+	
+	if(instruction == '5'){
+	  autoFight = true;
+	  instruction = '1';
+	}
         
 	while((instruction-'0')<1||(instruction-'0')>9){
 	  cout<<"Wrong button pressed, only 0~9 is meaningful, try again\n";

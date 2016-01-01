@@ -31,6 +31,7 @@ class Dungeon {
   int LevelComplete=0;
   int playerX = 0;
   int playerY = 0;
+  bool autoFight = false;
   vector<int>goldByStages;
   vector<int>expByStages;
   //int represent percentage/10
@@ -60,7 +61,7 @@ class Dungeon {
   void PickUpGoldAtLevel(Hero &h, int l);
   string GetName() {return name;}
   int GetMinLevel() {return minimumLevelEnter;}
-
+  int GetDirection();
 };
 
 
