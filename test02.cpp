@@ -12,7 +12,7 @@ int main() {
 	//Initaliziation Test for Life and Hero
 	vector<int>temp;
 	Life pony = Life("person", 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, temp);
-	Hero Saber = Hero("Saber", 20, 10, 3, 4, 5, 6, 30, 8, 31, 10, temp);
+	Hero Saber = Hero("Saber", 1, 20, 10, 3, 4, 5, 6, 30, 8, 31, 10, temp);
 
 
     

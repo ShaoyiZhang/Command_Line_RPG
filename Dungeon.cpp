@@ -410,7 +410,10 @@ void Dungeon::StartDungeon(Hero & h) {
       //Display the 8 blocks near the hero
       ClearAllNearBlock();
       //Replace the current Hero location with the origin Item/Monster/Space
-      cout<<"HP: "<<h.GetHP()<<"/"<<h.GetTotalHP()<<endl;
+      cout<<"HP: "<<h.GetHP()<<"/"<<h.GetTotalHP();
+      cout<<"     EXP: "<<h.GetEXP()<<"/"<<h.GetMaxEXP();
+      cout<<"                   ATT: "<<h.GetAtt()<<"  Def: "<<h.GetDef();
+      cout<<"  STAM: "<<h.GetStam()<<"  INTL: "<<h.GetIntl()<<endl;
       DisplayFogAtLevel(L + 1);
       Fog_of_War[L][playerX][playerY] = stages[L][playerX][playerY];
       directiopn = GetDirection();

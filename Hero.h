@@ -3,7 +3,16 @@
 
 #include "Life.h"
 #include "Bag.h"
-//#include "NPC.h"
+#include <algorithm>
+#include <time.h>
+#include <iostream>
+#include <cstdlib>
+using std::endl;
+using std::cin;
+using std::cout;
+using std::sort;
+
+static int LevelToUpgrade[16] = {0,15,25,34, 44, 59, 79, 105, 140, 187, 250, 332, 443, 591, 789, 1051 };
 
 class Hero: public Life
 {
@@ -18,9 +27,9 @@ private:
 
 public:
     Hero(){};
-    Hero(string name, int attack, int defense, int stamina, int intelligence,
+ Hero(string name, int level, int attack, int defense, int stamina, int intelligence,
         int stun, int weak, int HP, int MP, int totalHP, int totalMP, vector<int> skills) :
-        Life(name, attack, defense, stamina, intelligence, stun, weak, HP, MP, totalHP, totalMP, skills) {maxEXP = 5;}
+    Life(name, attack, defense, stamina, intelligence, stun, weak, HP, MP, totalHP, totalMP, skills) {this->level = level;  maxEXP = LevelToUpgrade[level];}
     Hero(string name);
     bool CheckLevelUp();
     bool CheckOwnership(Item& item);
@@ -38,10 +47,12 @@ public:
     int GetLevel(){ return this->level; }
     int GetCoins(){ return this->coins; }
     int GetEXP(){ return this->experience; };
+    int GetMaxEXP() {return this->maxEXP;}
     Bag GetBag(){ return this->bag; };
     void PrintLevel();
     void PrintCoins();
     void PrintEXP();
+    void ReportStatus();
     // string GetBag() { return bag.ToString(); }
 
     void GainItem(Item i);

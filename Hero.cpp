@@ -1,17 +1,6 @@
 #include "Hero.h"
-#include <algorithm>
-#include <time.h>
-#include <iostream>
-#include <cstdlib>
-using std::endl;
-using std::cout;
-using std::sort;
-/*
-Hero::Hero(string name, int attack, int defense, int stamina, int intelligence,
-           int stun, int weak, int HP, int MP, int totalHP, int totalMP, vector<int> skills)
-{
-	Life(name, attack, defense, stamina, intelligence, stun, weak, HP, MP, totalHP, totalMP, skills);
-}*/
+
+
 
 Hero::Hero(string name):Life()
 {
@@ -49,20 +38,30 @@ void Hero::PrintLevel()
 
 void Hero::PrintCoins()
 {
-	cout<<"Master, you have " << this->coins << "Hero coins." << endl;
+	cout<<"Master, you have " << this->coins << " Hero coins." << endl;
 }
 void Hero::PrintEXP()
 {
-	cout<<"Master, you have " << this->experience << "EXP. To level up, you still need "<< (this->maxEXP - this->experience) << "EXP. Keep it up!" << endl;
+	cout<<"Master, you have " << this->experience << "EXP. To level up, you still need "<< (this->maxEXP - this->experience) << " EXP. Keep it up!" << endl;
 }
+
+void Hero::ReportStatus(){
+  cout<<endl;
+  PrintLevel();
+  PrintCoins();
+  PrintEXP();
+  cout<<endl;
+}
+
 bool Hero::CheckLevelUp()
 {
-	if (this->maxEXP <= this->experience)
+	if (this->maxEXP > this->experience)
 		return false;
   	else
 	{
 		this->experience = this->experience - maxEXP;
-		this->level++;
+		//upgrade the level and set the maxEXP to new value
+		this->maxEXP = LevelToUpgrade[++level];
 		return true;
     }
 }
@@ -108,6 +107,41 @@ void Hero::GainItem(Item item)
 
 void Hero::UpdateLevel()   // might call CheckLevelUp()
 {
+  if(CheckLevelUp()){
+    cout<<"\n\n\n\n\nLevel UP! You are LV."<<level<<" now\n";
+    cout<<"You have 4 free attribute points. Choose wisely";
+    int points = 4;
+    char toAdd = ' ';
+    char command = ' ';
+    while(points){
+      cout<<"Which attribute you want to enhance?\n";
+      cout<<"1. Attack\n2. Defense \n3. Stamina \n4.Intelligence\n";
+      cout<<"Enter the index";
+      cin>>command;
+      while(command!='1'&&command!='2'&&command!='3'&&command!='4'){
+	cout<<"Only index 1,2,3,4 is valid. Please enter the index again\n";
+	cin>>command;
+      }
+      cout<<"How many points you want to put in this attribute?\n";
+      cin>>toAdd;
+      while((int)(toAdd-'0')<0||(int)(toAdd-'0')>points){
+	cout<<"Invalid number, you have "<<points<<" points now. Enter the number again\n";
+	cin>>toAdd;
+      }
+      if(command=='1')
+	this->attack+=(toAdd-'0');
+      if(command=='2')
+	this->defense+=(toAdd-'0');
+      if(command=='3')
+	this->stamina+=(toAdd-'0');
+      if(command=='4')
+	this->intelligence+=(toAdd-'0');
+      points-=(int)(toAdd-'0');
+      cout<<"You have "<<points<<" points left\n";
+    }
+    ReportStatus();
+    this->HP = this->totalHP;
+  }
 }
 
 bool Hero::PurchaseItem(string itemName)
