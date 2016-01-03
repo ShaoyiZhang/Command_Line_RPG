@@ -244,8 +244,6 @@ void Dungeon::Attack(Hero &h, Monster &m, int attacker)  // 0 for monster, 1 for
     if (attacker == 1) // Hero attacking
     {   
         int damage = h.GetAtt()-m.GetDef()/2<0?0:(h.GetAtt()-m.GetDef());
-	cout<<"Monster's defense is "<<m.GetDef()<<endl;
-	cout<<"Hero's attack is "<<h.GetAtt()<<endl;
         m.UpdateHP(-damage);
         cout << "\nMonster received " << damage << " damage.\n";
         cout << "Monster HP: " << m.GetHP() << std::endl<<endl;
@@ -430,6 +428,8 @@ void Dungeon::StartDungeon(Hero & h) {
       //Check if current position is a Monster
       else if(isdigit(stages[L][playerX][playerY])){
 	Monster& currentMonster = GetMonster(L,playerX,playerY);
+	currentMonster.ShowInformation();
+	cout<<endl;
 	Fight(h,currentMonster);
 	if(h.GetHP()==0){
 	  LeaveDungeon(h);
@@ -520,6 +520,7 @@ void Dungeon::LeaveDungeon(Hero& h) {
 
 
 }
+
 
 
 

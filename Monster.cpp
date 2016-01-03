@@ -11,6 +11,16 @@ public:
 	vector<Item> DropOff();
 };*/
 
+void Monster::ShowInformation(){
+  cout<<"\nName: "<<specialType<<GetName()<<endl;
+  cout<<"HP: "<<GetHP()<<endl;
+  cout<<"ATT: "<<GetAtt()<<endl;
+  cout<<"DEF: "<<GetDef()<<endl;
+  cout<<"INT: "<<GetIntl()<<endl;
+}
+
+
+
 int Monster::GiveEXP() {
 	return EXP;
 }
@@ -67,4 +77,29 @@ string Monster::To_String_Part_Two(){
   result+=("EXP: "+to_string(this->EXP)+"   ");
   result+=("Gold "+to_string(this->gold/2)+"~"+to_string(this->gold));
   return result;
+}
+
+void Monster::SetSpecial(){
+  int index = 0;
+  special = true;
+  gold*=2;
+  EXP*=2;
+  
+  index = rand()%4;
+  if(index==0){
+    specialType = "Rage ";
+    attack*=2;
+  }
+  else if(index==1){
+    specialType = "Tenacity ";
+    defense*=2;
+  }
+  else if(index==2){
+    specialType = "Strong ";
+    stamina*=2;
+  } 
+  else if(index==3){
+    specialType = "Clever ";
+    intelligence*=2;
+  }
 }

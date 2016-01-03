@@ -16,6 +16,8 @@ private:
 	//To Do: add a vector of Equiment drop off
 	int gold;
 	int EXP;
+	bool special = false;
+	string specialType=" ";
 public:
 	/*Life(string name, int attack, int defense, int stamina, int intelligence,
          int stun, int weak,int HP, int MP,vector<int> skills);
@@ -32,6 +34,8 @@ public:
 	vector<Item> DropOff();
 	string To_String_Part_One();
 	string To_String_Part_Two();
+	void SetSpecial();
+	void ShowInformation();
 };
 
 #endif
