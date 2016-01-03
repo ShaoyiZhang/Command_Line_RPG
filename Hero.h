@@ -64,6 +64,7 @@ public:
     //bool WearEquip(Equipment equ);
     //bool TakeOffEquip(Equipment equ);
 
+    void ResetHP() {if(HP<totalHP/2) HP = totalHP/2;}
 
 
 };
